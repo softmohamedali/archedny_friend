@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.archedny_app_friend.presentation.auth.screens.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeMapFragment2"
+            app:destination="@id/homeMapFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.archedny_app_friend.presentation.auth.screens.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_verificationPhoneFragment"
+            app:destination="@id/verificationPhoneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verificationPhoneFragment"
+        android:name="com.example.archedny_app_friend.presentation.auth.screens.VerificationPhoneFragment"
+        android:label="fragment_verification_phone"
+        tools:layout="@layout/fragment_verification_phone" >
+        <argument
+            android:name="phone"
+            app:argType="string"
+            android:defaultValue=" " />
+        <argument
+            android:name="verificationId"
+            app:argType="string"
+            android:defaultValue=" " />
+        <action
+            android:id="@+id/action_verificationPhoneFragment_to_splashFragment"
+            app:destination="@id/splashFragment" />
+        <action
+            android:id="@+id/action_verificationPhoneFragment_to_homeMapFragment2"
+            app:destination="@id/homeMapFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeMapFragment2"
+        android:name="com.example.archedny_app_friend.presentation.body.screens.HomeMapFragment"
+        android:label="fragment_home_map"
+        tools:layout="@layout/fragment_home_map" />
+</navigation>

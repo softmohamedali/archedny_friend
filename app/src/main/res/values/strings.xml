@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Archedny_app_friend</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="password">Password</string>
+    <string name="sing_up">Sing Up</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="contained_button">Contained button</string>
+    <string name="textview">TextView</string>
+    <string name="log_in">Log In</string>
+    <string name="what_is_your_phone_number">What is your Phone Number</string>
+    <string name="we_will_send_you_a_verfication_code">We will send you a verfication code</string>
+    <string name="countinue">Continue</string>
+    <string name="phone_n_verification">Phone \n Verification</string>
+    <string name="if_you_didn_t_receive_a_code">if you didn\'t receive a code!</string>
+    <string name="resend">Resend</string>
+    <string name="please_type_the_verification_code">Please type the verification Code</string>
+    <string name="sent_to">sent to</string>
+    <string name="verifiy">Verifiy</string>
+    <string name="can_send_code_after">Can send code after</string>
+    <string name="request_loading">Request Loading</string>
+    <string name="archedny">Archedny</string>
+    <string name="my_friends">My Friends</string>
+    <string name="skip">Skip</string>
+    <string name="phone">Phone Number</string>
+    <string name="user_name">User Name</string>
+    <string name="save_info">Save Info</string>
+    <string name="please_accepte_permission_to_have_utility_of_our_application">Please accepte Permission to have Utility of our application</string>
+</resources>
