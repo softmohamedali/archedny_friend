@@ -22,7 +22,7 @@ object FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideFirebaseAuth()= FirebaseAuth.getInstance()
+    fun provideFirebaseAuth():FirebaseAuth= FirebaseAuth.getInstance()
 
     @Provides
     @Singleton

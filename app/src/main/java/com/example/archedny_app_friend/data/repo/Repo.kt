@@ -6,6 +6,11 @@ import com.example.archedny_app_friend.domain.models.User
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import dagger.hilt.android.scopes.ViewModelScoped
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @ViewModelScoped
@@ -40,5 +45,35 @@ class Repo @Inject constructor(
         firebaseSource.singInWithCredential(credential)
 
     fun saveUserInfo(user: User)=firebaseSource.saveUserInfo(user)
+
+    fun searchPhone(query:String)=firebaseSource.searchPhone(query)
+
+    fun createChatChaneel(
+        freindId:String,
+        onSuccess:()->Unit,
+        onError:(String)->Unit
+    ){
+        firebaseSource.createChannel(
+            friendId =freindId,
+            onSucess ={
+                onSuccess()
+            },
+            onError1 = {
+                onError(it)
+            },
+            onError2 = {
+                onError(it)
+            }
+        )
+    }
+
+    fun getUser(id:String,onComlete:(User)->Unit){
+        firebaseSource.getUser(id){
+            onComlete(it)
+        }
+    }
+    fun getUser2(id:String)= firebaseSource.getUser2(id)
+
+    fun getMyFriends()=firebaseSource.getMyFriend()
 
 }

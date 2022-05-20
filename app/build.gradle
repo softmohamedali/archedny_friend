@@ -91,7 +91,7 @@ dependencies {
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-native-mt'
-
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.4.3-native-mt'
     // Coroutine Lifecycle Scopes
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
@@ -123,6 +123,9 @@ dependencies {
     //country phone code
     implementation 'com.hbb20:ccp:2.6.0'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
 
 }
 

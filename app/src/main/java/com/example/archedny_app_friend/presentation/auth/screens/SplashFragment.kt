@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.archedny_app_friend.R
 import com.example.archedny_app_friend.databinding.FragmentSplashBinding
 import com.example.archedny_app_friend.presentation.auth.AuthViewModel
+import com.example.archedny_app_friend.utils.myextention.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 
@@ -39,7 +40,7 @@ class SplashFragment : Fragment() {
     private fun setUpView() {
         lifecycleScope.launchWhenStarted {
             delay(2000)
-            if (authViewModel.getUser()!=null){
+            if (authViewModel.getUser()?.uid!=null){
                 findNavController().navigate(R.id.action_splashFragment_to_homeMapFragment2)
             }else{
                 findNavController().navigate(R.id.action_splashFragment_to_registerFragment)

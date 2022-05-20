@@ -43,9 +43,7 @@ class RegisterFragment : Fragment() {
         binding.countrycodeSpinnerRegister.setCountryForNameCode("eg")
     }
     private fun setUpViewAction() {
-        binding.backButtonRegister.setOnClickListener {
-            findNavController().popBackStack()
-        }
+
         binding.registerButtonRegister.setOnClickListener {
             mPhone=binding.phoneEditTextRegister.text.toString()
             mCode=binding.countrycodeSpinnerRegister.selectedCountryCode

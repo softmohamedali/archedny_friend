@@ -5,6 +5,7 @@ import android.content.Context
 import android.security.identity.IdentityCredential
 import com.example.archedny_app_friend.domain.models.User
 import com.example.archedny_app_friend.utils.Constants
+import com.example.archedny_app_friend.utils.out
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseException
@@ -12,7 +13,8 @@ import com.google.firebase.auth.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
+import kotlinx.coroutines.tasks.asDeferred
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -25,30 +27,33 @@ class FirebaseSource @Inject constructor(
     private val firestore: FirebaseFirestore,
     private val dataStorage: FirebaseStorage,
     private val googleSingInClient: GoogleSignInClient,
-    private val phoneAuth:PhoneAuthProvider
+    private val phoneAuth: PhoneAuthProvider
 ) {
 
-    fun getUser()=auth.currentUser
+    fun getUser() = auth.currentUser
 
     fun registerWithPhone(
-        phone:String,
-        activity:Activity,
-        onVerificationCompleted:()->Unit,
-        onVerificationFailed:(String)->Unit,
-        onCodeSent:(String)->Unit,
+        phone: String,
+        activity: Activity,
+        onVerificationCompleted: () -> Unit,
+        onVerificationFailed: (String) -> Unit,
+        onCodeSent: (String) -> Unit,
     ) {
+        auth.getFirebaseAuthSettings().setAppVerificationDisabledForTesting(true)
         phoneAuth.verifyPhoneNumber(
             phone,
             55L,
             TimeUnit.SECONDS,
             activity,
-            object :PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+            object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                 override fun onVerificationCompleted(p0: PhoneAuthCredential) {
                     onVerificationCompleted()
                 }
+
                 override fun onVerificationFailed(p0: FirebaseException) {
                     onVerificationFailed(p0.message!!)
                 }
+
                 override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
                     super.onCodeSent(p0, p1)
                     onCodeSent(p0)
@@ -58,29 +63,70 @@ class FirebaseSource @Inject constructor(
     }
 
     fun getCredintial(
-        code:String,
-        verificationId:String
-    )=PhoneAuthProvider.getCredential(verificationId,code)
+        code: String,
+        verificationId: String
+    ) = PhoneAuthProvider.getCredential(verificationId, code)
 
-    fun singInWithCredential(credential:PhoneAuthCredential)=
+    fun singInWithCredential(credential: PhoneAuthCredential) =
         auth.signInWithCredential(credential)
 
-    fun saveUserInfo(user:User):Task<Void>{
-        val ref=firestore.collection(Constants.USER_COLLECTION)
-        val mUser=user
-        mUser.id=ref.id
+    fun saveUserInfo(user: User): Task<Void> {
+        val ref = firestore.collection(Constants.USER_COLLECTION)
+        val mUser = user
+        mUser.id = getUser()?.uid
         return ref.document(mUser.id!!).set(user)
     }
 
+    fun getUser(id: String, onComplete: (User) -> Unit) {
+        firestore.collection(Constants.USER_COLLECTION).document(id).get()
+            .addOnSuccessListener {
+                onComplete(it.toObject(User::class.java)!!)
+            }
+    }
+
+    fun getUser2(id: String) =
+         firestore.collection(Constants.USER_COLLECTION).document(id).get()
+
+
+
+
+    fun getMyFriend() = firestore.collection(Constants.USER_COLLECTION).document(getUser()!!.uid)
+        .collection("chatchennel")
+
+
+    fun searchPhone(query: String) = firestore.collection(Constants.USER_COLLECTION)
+        .orderBy("phone")
+        .startAt(query.trim())
+        .endAt(query.trim() + "\uF8FF")
+        .startAt(query.trim().uppercase(Locale.ROOT))
+        .get()
+
+    fun createChannel(
+        userId: String = getUser()!!.uid,
+        friendId: String,
+        onSucess: () -> Unit,
+        onError1: (error1: String) -> Unit,
+        onError2: (error2: String) -> Unit,
+    ) {
+        val id = firestore.collection(Constants.USER_COLLECTION).document().id
+        val result1 = firestore.collection(Constants.USER_COLLECTION).document(userId)
+            .collection("chatchennel")
+            .document(friendId)
+            .set(mapOf("chatChannelId" to id)).isSuccessful
+        val result2 = firestore.collection(Constants.USER_COLLECTION).document(friendId)
+            .collection("chatchennel")
+            .document(userId)
+            .set(mapOf("chatChannelId" to id)).isSuccessful
+
+        if (!result1 && !result2) {
+            onSucess()
+        } else {
+            onError1("Error")
+        }
+    }
+
+
 }
-
-
-
-
-
-
-
-
 
 
 //

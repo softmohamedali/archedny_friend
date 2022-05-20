@@ -98,6 +98,26 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
+                android:id="@+id/tv_error"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:alpha="0.4"
+                android:text="@string/error"
+                android:textColor="@color/purple_500"
+                android:textSize="@dimen/_25sdp"
+                android:visibility="invisible"
+                android:textStyle="italic|bold"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/textView2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -123,17 +143,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingActionButton"
+                android:id="@+id/fab_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/purple_500"
                 android:clickable="true"
                 android:src="@drawable/ic_search"
-                app:tint="@color/white"
-                android:backgroundTint="@color/purple_500"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:tint="@color/white" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/pb_fr_home"
@@ -148,6 +168,7 @@
                 app:strokeWidth="4dp"
                 app:cardElevation="@dimen/_10sdp"
                 app:cardCornerRadius="20dp"
+                android:visibility="invisible"
                 >
                 <ProgressBar
                     android:layout_width="wrap_content"
@@ -164,6 +185,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_start_pause_track"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:src="@drawable/ic_start"
+                app:tint="@color/white"
+                android:backgroundTint="@color/start"
+                app:layout_constraintBottom_toTopOf="@+id/fab_search"
+                app:layout_constraintEnd_toEndOf="@+id/fab_search"
+                app:layout_constraintStart_toStartOf="@+id/fab_search" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="none">#00FFFFFF</color>
+    <color name="start">#24CC00</color>
+    <color name="pause">#EC0404</color>
 
     <color name="progress_back">#F3EEFA</color>
+    <color name="error">#DA0303</color>
+    <color name="warning">#FFA100</color>
+
 </resources>

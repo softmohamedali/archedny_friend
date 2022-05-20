@@ -249,7 +249,7 @@
         android:id="@+id/progress_verification"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:visibility="invisible">
 
         <View
             android:layout_width="match_parent"

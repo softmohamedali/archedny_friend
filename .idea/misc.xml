@@ -5,15 +5,21 @@
       <map>
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/drawable/edit_text_phone_code_border.xml" value="0.1425" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_dialog_send_tracking_request.xml" value="0.25416666666666665" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_forget_password.xml" value="0.25416666666666665" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_home_map.xml" value="0.2" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_log_in.xml" value="0.25416666666666665" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_login_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_register.xml" value="0.25416666666666665" />
+        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_searsh.xml" value="0.25416666666666665" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_splash.xml" value="0.25416666666666665" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_user_info.xml" value="0.25416666666666665" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_verification_phone.xml" value="0.25416666666666665" />
+        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/layout_frind_item.xml" value="0.264" />
+        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/layout_phone_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/layout_toast_sucess.xml" value="0.253125" />
+        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/layout_toast_warning.xml" value="0.253125" />
       </map>
     </option>
   </component>

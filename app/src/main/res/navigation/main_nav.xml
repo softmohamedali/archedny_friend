@@ -15,7 +15,9 @@
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/action_splashFragment_to_homeMapFragment2"
-            app:destination="@id/homeMapFragment2" />
+            app:destination="@id/homeMapFragment2"
+            app:popUpTo="@id/main_nav"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -50,5 +52,22 @@
         android:id="@+id/homeMapFragment2"
         android:name="com.example.archedny_app_friend.presentation.body.screens.HomeMapFragment"
         android:label="fragment_home_map"
-        tools:layout="@layout/fragment_home_map" />
+        tools:layout="@layout/fragment_home_map" >
+        <action
+            android:id="@+id/action_homeMapFragment2_to_searshFragment"
+            app:destination="@id/searshFragment" />
+        <action
+            android:id="@+id/action_homeMapFragment2_to_dialogSendTrackingRequestFragment"
+            app:destination="@id/dialogSendTrackingRequestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searshFragment"
+        android:name="com.example.archedny_app_friend.presentation.body.screens.SearshFragment"
+        android:label="fragment_searsh"
+        tools:layout="@layout/fragment_searsh" />
+    <fragment
+        android:id="@+id/dialogSendTrackingRequestFragment"
+        android:name="com.example.archedny_app_friend.presentation.body.screens.DialogSendTrackingRequestFragment"
+        android:label="fragment_dialog_send_tracking_request"
+        tools:layout="@layout/fragment_dialog_send_tracking_request" />
 </navigation>

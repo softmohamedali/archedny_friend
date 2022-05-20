@@ -117,6 +117,7 @@ class VerificationPhoneFragment : Fragment(), EasyPermissions.PermissionCallback
                         authViewModel.saveUser(User(
                             phone = mPhone
                         ))
+                        binding.progressVerification.isVisible = false
                     }
                 }
             }
@@ -156,6 +157,8 @@ class VerificationPhoneFragment : Fragment(), EasyPermissions.PermissionCallback
                     is ResultState.IsSucsses -> {
                         mVerificationId = it.data!!
                         counter()
+                        binding.progressVerification.isVisible = false
+
                     }
                 }
             }
