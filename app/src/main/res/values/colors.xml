@@ -11,6 +11,9 @@
     <color name="start">#24CC00</color>
     <color name="pause">#EC0404</color>
 
+    <color name="positive">#24CC00</color>
+    <color name="negative">#EC0404</color>
+
     <color name="progress_back">#F3EEFA</color>
     <color name="error">#DA0303</color>
     <color name="warning">#FFA100</color>

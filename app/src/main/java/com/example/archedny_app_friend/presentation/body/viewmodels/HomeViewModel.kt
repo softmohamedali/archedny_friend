@@ -1,3 +1,5 @@
+
+
 package com.example.archedny_app_friend.presentation.body.viewmodels
 
 import androidx.lifecycle.ViewModel
@@ -6,7 +8,7 @@ import com.example.archedny_app_friend.data.repo.Repo
 import com.example.archedny_app_friend.domain.models.User
 import com.example.archedny_app_friend.utils.ResultState
 import com.example.archedny_app_friend.utils.out
-import com.google.firebase.firestore.DocumentSnapshot
+import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.firestore.QuerySnapshot
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
@@ -41,9 +43,9 @@ class HomeViewModel @Inject constructor(
         out("start")
         out("1")
         val users= mutableListOf<User>()
-        viewModelScope.launch (Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO) {
             out("2")
-            async (Dispatchers.IO){
+            async {
                 value.documents.forEach {
                     out("3")
                     users.add(getUser(it.id).toObject(User::class.java)!!)
@@ -60,12 +62,38 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    suspend fun getUser(id: String )=repo.getUser2(id).await()
 
-    suspend fun getf()= withContext(Dispatchers.IO){
+    private var _isSaherdIt = MutableStateFlow<ResultState<Boolean>>(ResultState.Init)
+    var isSaherdIt: StateFlow<ResultState<Boolean>> = _isSaherdIt
 
+    fun shareLocationWithMyFriend(friendId: String, latlang: LatLng) {
+        viewModelScope.launch (Dispatchers.IO){
+            _isSaherdIt.emit(ResultState.IsLoading)
+            val result=repo.shareLocationWithMyFriend(friendId,latlang)
+            if (!result.isSuccessful){
+                _isSaherdIt.emit(ResultState.IsSucsses())
+            }else{
+                _isSaherdIt.emit(ResultState.IsError(result.exception?.message?:"unkown error"))
+            }
+        }
     }
 
+    private var _friendLocation = MutableStateFlow<ResultState<LatLng>>(ResultState.Init)
+    var friendLocation: StateFlow<ResultState<LatLng>> = _friendLocation
 
-    suspend fun getUser(id: String )=repo.getUser2(id).await()
+    fun getFriendLocation(friendId: String) {
+        viewModelScope.launch (Dispatchers.IO){
+            _friendLocation.emit(ResultState.IsLoading)
+            repo.getFriendLocation(friendId).addOnCompleteListener{
+                if (!it.isSuccessful){
+                    _friendLocation.value=ResultState.IsSucsses(it.result.toObject(LatLng::class.java)!!)
+                }else{
+                    _friendLocation.value=ResultState.IsError(it.exception?.message?:"")
+                }
+            }
+
+        }
+    }
 
 }

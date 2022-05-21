@@ -33,4 +33,10 @@
     <string name="enter_phone_to_search">Enter Phone to Search</string>
     <string name="sucess_toast_meassge">Success Operation</string>
     <string name="error">Error</string>
+    <string name="are_you_went_to_send_request_to_asking_your_frind_to_traking_his_location">Are you went to send request to asking your frind to traking his location</string>
+    <string name="yes_send_request">Yes send Request</string>
+    <string name="no_cancle">No, Cancle</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="log_out">Log out</string>
 </resources>

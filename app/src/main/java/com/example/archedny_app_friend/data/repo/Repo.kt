@@ -3,6 +3,7 @@ package com.example.archedny_app_friend.data.repo
 import android.app.Activity
 import com.example.archedny_app_friend.data.remote.FirebaseSource
 import com.example.archedny_app_friend.domain.models.User
+import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import dagger.hilt.android.scopes.ViewModelScoped
@@ -67,13 +68,20 @@ class Repo @Inject constructor(
         )
     }
 
-    fun getUser(id:String,onComlete:(User)->Unit){
-        firebaseSource.getUser(id){
-            onComlete(it)
-        }
-    }
+
     fun getUser2(id:String)= firebaseSource.getUser2(id)
 
     fun getMyFriends()=firebaseSource.getMyFriend()
+
+    suspend fun shareLocationWithMyFriend(friendId: String, latlang: LatLng) =
+        withContext(Dispatchers.IO){
+            firebaseSource.shareLocationWithMyFriend(friendId, latlang)
+        }
+
+    suspend fun getFriendLocation( friendId: String) =
+        withContext(Dispatchers.IO){
+            firebaseSource.getFriendLocation(friendId)
+        }
+
 
 }

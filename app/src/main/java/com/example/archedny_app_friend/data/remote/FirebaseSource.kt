@@ -1,25 +1,22 @@
 package com.example.archedny_app_friend.data.remote
 
 import android.app.Activity
-import android.content.Context
-import android.security.identity.IdentityCredential
+import com.example.archedny_app_friend.domain.models.ChatChannel
 import com.example.archedny_app_friend.domain.models.User
 import com.example.archedny_app_friend.utils.Constants
-import com.example.archedny_app_friend.utils.out
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.*
-import kotlinx.coroutines.tasks.asDeferred
+import kotlinx.coroutines.tasks.await
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
-import kotlin.random.Random
 
 @Singleton
 class FirebaseSource @Inject constructor(
@@ -77,17 +74,8 @@ class FirebaseSource @Inject constructor(
         return ref.document(mUser.id!!).set(user)
     }
 
-    fun getUser(id: String, onComplete: (User) -> Unit) {
-        firestore.collection(Constants.USER_COLLECTION).document(id).get()
-            .addOnSuccessListener {
-                onComplete(it.toObject(User::class.java)!!)
-            }
-    }
-
     fun getUser2(id: String) =
-         firestore.collection(Constants.USER_COLLECTION).document(id).get()
-
-
+        firestore.collection(Constants.USER_COLLECTION).document(id).get()
 
 
     fun getMyFriend() = firestore.collection(Constants.USER_COLLECTION).document(getUser()!!.uid)
@@ -112,11 +100,13 @@ class FirebaseSource @Inject constructor(
         val result1 = firestore.collection(Constants.USER_COLLECTION).document(userId)
             .collection("chatchennel")
             .document(friendId)
-            .set(mapOf("chatChannelId" to id)).isSuccessful
+            .set(mapOf("chatChannelId" to id))
+            .isSuccessful
         val result2 = firestore.collection(Constants.USER_COLLECTION).document(friendId)
             .collection("chatchennel")
             .document(userId)
-            .set(mapOf("chatChannelId" to id)).isSuccessful
+            .set(mapOf("chatChannelId" to id))
+            .isSuccessful
 
         if (!result1 && !result2) {
             onSucess()
@@ -124,6 +114,30 @@ class FirebaseSource @Inject constructor(
             onError1("Error")
         }
     }
+
+    suspend fun getFriendChatChannel(friendId: String)=
+        firestore.collection(Constants.USER_COLLECTION)
+            .document(getUser()!!.uid)
+            .collection("chatchennel")
+            .document(friendId)
+            .get()
+            .await()
+            .toObject(ChatChannel::class.java)
+
+    suspend fun shareLocationWithMyFriend(friendId: String, latlang: LatLng) =
+            firestore.collection(Constants.CHAT_CHANNELS_COLLECTION)
+                .document(getFriendChatChannel(friendId)!!.chatChannelId)
+                .collection(getUser()!!.uid)
+                .document(Constants.SENDER_LOCATION_DOCUMENT)
+                .set(latlang)
+
+
+    suspend fun getFriendLocation(friendId: String) =
+        firestore.collection(Constants.CHAT_CHANNELS_COLLECTION)
+            .document(getFriendChatChannel(friendId)!!.chatChannelId)
+            .collection(friendId)
+            .document(Constants.RECIVER_LOCATION_DOCUMENT)
+            .get()
 
 
 }

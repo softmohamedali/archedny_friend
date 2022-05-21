@@ -1,9 +1,12 @@
 package com.example.archedny_app_friend.utils.myextention
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.example.archedny_app_friend.R
 import com.example.archedny_app_friend.databinding.LayoutToastSucessBinding
 
@@ -14,7 +17,7 @@ fun toast(
     Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
 }
 
-fun toastSuccessBooking(
+fun coustomToast(
     context: Context,
     msg: String,
     type:ToastType=ToastType.SUCCESS
@@ -47,7 +50,8 @@ fun toastSuccessBooking(
     }
 
     view.imageView4.setBackgroundResource(resourceId)
-    view.imageView4.setColorFilter(iconColor)
+    view.imageView4.setColorFilter(ContextCompat.getColor(context, iconColor))
+
     toast.view = view.root
     toast.setGravity(Gravity.CENTER, 0, 0)
     toast.show()

@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.body.screens.DialogSendTrackingRequestFragment"/>
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    app:strokeColor="@color/purple_500"
+    app:strokeWidth="2dp"
+    android:layout_gravity="center"
+    tools:context=".presentation.body.screens.DialogSendTrackingRequestFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <Button
+            android:id="@+id/btn_accepte"
+            android:layout_width="@dimen/_170sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            android:backgroundTint="@color/positive"
+            android:text="@string/yes_send_request"
+            app:layout_constraintEnd_toEndOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:text="@string/are_you_went_to_send_request_to_asking_your_frind_to_traking_his_location"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_cancle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/no_cancle"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            android:backgroundTint="@color/negative"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btn_accepte"
+            app:layout_constraintStart_toStartOf="@+id/btn_accepte"
+            app:layout_constraintTop_toBottomOf="@+id/btn_accepte"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

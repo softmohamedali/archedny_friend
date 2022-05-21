@@ -1,29 +1,18 @@
 package com.example.archedny_app_friend.presentation.body.screens
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
-import androidx.core.widget.doOnTextChanged
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.archedny_app_friend.R
 import com.example.archedny_app_friend.databinding.FragmentDialogSendTrackingRequestBinding
-import com.example.archedny_app_friend.databinding.FragmentSearshBinding
-import com.example.archedny_app_friend.presentation.body.adapters.PhoneItemAdapter
-import com.example.archedny_app_friend.presentation.body.viewmodels.SearshViewModel
-import com.example.archedny_app_friend.utils.ResultState
-import com.example.archedny_app_friend.utils.myextention.ToastType
-import com.example.archedny_app_friend.utils.myextention.toastSuccessBooking
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DialogSendTrackingRequestFragment : Fragment() {
+class DialogSendTrackingRequestFragment : DialogFragment() {
     private var _binding: FragmentDialogSendTrackingRequestBinding?=null
     private val binding get() = _binding!!
 //    private val searchViewModel by viewModels<SearshViewModel>()
@@ -34,6 +23,7 @@ class DialogSendTrackingRequestFragment : Fragment() {
     ): View? {
         _binding= FragmentDialogSendTrackingRequestBinding.inflate(layoutInflater)
         setUp()
+        dialog?.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         return binding.root
     }
 
@@ -48,7 +38,9 @@ class DialogSendTrackingRequestFragment : Fragment() {
     }
 
     private fun setUpViewAction() {
-
+        binding.btnCancle.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun setUpObservers() {

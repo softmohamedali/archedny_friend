@@ -122,13 +122,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/my_friends"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/img_download"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -136,9 +136,9 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="0dp"
                 android:layout_height="279dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/textView2"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView2"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -198,6 +198,31 @@
                 app:layout_constraintBottom_toTopOf="@+id/fab_search"
                 app:layout_constraintEnd_toEndOf="@+id/fab_search"
                 app:layout_constraintStart_toStartOf="@+id/fab_search" />
+
+            <ImageView
+                android:id="@+id/img_upload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_upload"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView2"
+                app:tint="@color/purple_500" />
+
+            <ImageView
+                android:id="@+id/img_download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:rotation="-180"
+                android:visibility="invisible"
+                app:tint="@color/purple_500"
+                android:src="@drawable/ic_upload"
+                app:layout_constraintBottom_toBottomOf="@+id/img_upload"
+                app:layout_constraintEnd_toStartOf="@+id/img_upload"
+                app:layout_constraintTop_toTopOf="@+id/img_upload" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

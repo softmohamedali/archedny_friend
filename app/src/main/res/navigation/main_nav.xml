@@ -5,6 +5,12 @@
     android:id="@+id/main_nav"
     app:startDestination="@id/splashFragment">
 
+    <action
+        android:id="@+id/global_go_to_login"
+        app:destination="@id/splashFragment"/>
+
+
+
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.archedny_app_friend.presentation.auth.screens.SplashFragment"
@@ -46,7 +52,9 @@
             app:destination="@id/splashFragment" />
         <action
             android:id="@+id/action_verificationPhoneFragment_to_homeMapFragment2"
-            app:destination="@id/homeMapFragment2" />
+            app:destination="@id/homeMapFragment2"
+            app:popUpTo="@id/main_nav"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/homeMapFragment2"
@@ -65,7 +73,7 @@
         android:name="com.example.archedny_app_friend.presentation.body.screens.SearshFragment"
         android:label="fragment_searsh"
         tools:layout="@layout/fragment_searsh" />
-    <fragment
+    <dialog
         android:id="@+id/dialogSendTrackingRequestFragment"
         android:name="com.example.archedny_app_friend.presentation.body.screens.DialogSendTrackingRequestFragment"
         android:label="fragment_dialog_send_tracking_request"

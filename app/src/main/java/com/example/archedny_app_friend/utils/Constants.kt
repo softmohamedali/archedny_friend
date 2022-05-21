@@ -3,6 +3,9 @@ package com.example.archedny_app_friend.utils
 object Constants {
 
     const val USER_COLLECTION: String ="users"
+    const val CHAT_CHANNELS_COLLECTION: String ="chatchannels"
+    const val SENDER_LOCATION_DOCUMENT: String ="sender"
+    const val RECIVER_LOCATION_DOCUMENT: String ="reciver"
     const val DATASTORE_MAH7LY_NAME: String =""
 
     //location service constatns
