@@ -32,9 +32,7 @@ import com.google.android.gms.maps.GoogleMap.OnCameraIdleListener
 import com.google.android.gms.maps.GoogleMap.OnCameraMoveStartedListener
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import pub.devrel.easypermissions.EasyPermissions
@@ -57,6 +55,14 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
     private val callback = OnMapReadyCallback { googleMap ->
         mGoogleMap = googleMap
+//        val polylineOption= PolylineOptions()
+//            .color(R.color.red)
+//            .width(12f)
+//            .add(secondLastlatlng)
+//            .add(lastLatLng)
+//        googleMap?.addPolyline(polylineOption)
+//        googleMap?.addPolyline(polylineOption)
+
         /**
          * Manipulates the map once available.
          * This callback is triggered when the map is ready to be used.
@@ -112,8 +118,10 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         )
         homeViewModel.getMyFreiends()
         setUpView()
+        setUpMarkersIcon()
         setUpViewAction()
         setUpObservers()
+
     }
 
     private fun setUpView() {
@@ -237,6 +245,11 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         }
     }
 
+    fun setUpMarkersIcon(){
+        myMarker?.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_run))
+        friendMarker?.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_run))
+    }
+
     private fun observerCurrentLocationFromServices() {
         lifecycleScope.launchWhenStarted {
             TrackingService.currentLocation.collect { location ->
@@ -247,22 +260,23 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                             .position(LatLng(it.latitude, it.longitude))
                             .title("me")
                     )
-                    mGoogleMap.moveCamera(
-                        CameraUpdateFactory.newLatLng(
-                            LatLng(
-                                it.latitude,
-                                it.longitude
-                            )
-                        )
-                    )
-                    mGoogleMap.animateCamera(
-                        CameraUpdateFactory.zoomTo(16f),
-                        3000,
-                        object : GoogleMap.CancelableCallback {
-                            override fun onCancel() {}
-                            override fun onFinish() {}
-                        }
-                    )
+
+//                    mGoogleMap.moveCamera(
+//                        CameraUpdateFactory.newLatLng(
+//                            LatLng(
+//                                it.latitude,
+//                                it.longitude
+//                            )
+//                        )
+//                    )
+//                    mGoogleMap.animateCamera(
+//                        CameraUpdateFactory.zoomTo(16f),
+//                        3000,
+//                        object : GoogleMap.CancelableCallback {
+//                            override fun onCancel() {}
+//                            override fun onFinish() {}
+//                        }
+//                    )
                     homeViewModel.shareLocationWithMyFriend(
                         friendYouWentShare!!.id!!,
                         LatLng(it.latitude,it.longitude)

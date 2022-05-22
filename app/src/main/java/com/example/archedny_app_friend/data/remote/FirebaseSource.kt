@@ -138,8 +138,9 @@ class FirebaseSource @Inject constructor(
         firestore.collection(Constants.CHAT_CHANNELS_COLLECTION)
             .document(getFriendChatChannel(friendId)!!.chatChannelId)
             .collection(friendId)
-            .document(Constants.RECIVER_LOCATION_DOCUMENT)
-            .get()
+            .document(Constants.SENDER_LOCATION_DOCUMENT)
+
+
 
 
 }

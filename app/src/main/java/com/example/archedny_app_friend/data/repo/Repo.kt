@@ -80,10 +80,8 @@ class Repo @Inject constructor(
             firebaseSource.shareLocationWithMyFriend(friendId, latlang)
         }
 
-    suspend fun getFriendLocation( friendId: String) =
-        withContext(Dispatchers.IO){
-            firebaseSource.getFriendLocation(friendId)
-        }
+    suspend fun getFriendLocation( friendId: String) = firebaseSource.getFriendLocation(friendId)
+
 
 
 }

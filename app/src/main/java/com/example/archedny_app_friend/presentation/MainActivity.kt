@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity(),NavController.OnDestinationChangedListe
     }
 
     private lateinit var navController:NavController
-    private lateinit var drwarLayout:DrawerLayout
     private val  authViewModel:AuthViewModel by viewModels<AuthViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

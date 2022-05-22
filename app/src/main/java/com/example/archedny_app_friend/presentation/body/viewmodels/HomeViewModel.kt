@@ -5,6 +5,7 @@ package com.example.archedny_app_friend.presentation.body.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.archedny_app_friend.data.repo.Repo
+import com.example.archedny_app_friend.domain.models.MyLatLang
 import com.example.archedny_app_friend.domain.models.User
 import com.example.archedny_app_friend.utils.ResultState
 import com.example.archedny_app_friend.utils.out
@@ -79,17 +80,17 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private var _friendLocation = MutableStateFlow<ResultState<LatLng>>(ResultState.Init)
-    var friendLocation: StateFlow<ResultState<LatLng>> = _friendLocation
+    private var _friendLocation = MutableStateFlow<ResultState<MyLatLang>>(ResultState.Init)
+    var friendLocation: StateFlow<ResultState<MyLatLang>> = _friendLocation
 
     fun getFriendLocation(friendId: String) {
         viewModelScope.launch (Dispatchers.IO){
             _friendLocation.emit(ResultState.IsLoading)
-            repo.getFriendLocation(friendId).addOnCompleteListener{
-                if (!it.isSuccessful){
-                    _friendLocation.value=ResultState.IsSucsses(it.result.toObject(LatLng::class.java)!!)
+            repo.getFriendLocation(friendId).addSnapshotListener { value, error ->
+                if (error==null){
+                    _friendLocation.value=ResultState.IsSucsses(value!!.toObject(MyLatLang::class.java)!!)
                 }else{
-                    _friendLocation.value=ResultState.IsError(it.exception?.message?:"")
+                    _friendLocation.value=ResultState.IsError(error.message?:"")
                 }
             }
 
