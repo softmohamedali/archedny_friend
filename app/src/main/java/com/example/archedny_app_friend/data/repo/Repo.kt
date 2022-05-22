@@ -21,6 +21,8 @@ class Repo @Inject constructor(
 
     fun getUsert()=firebaseSource.getUser()
 
+    fun logOut()=firebaseSource.logOut()
+
     suspend fun registerWithPhone(
         phone:String,
         activity: Activity,

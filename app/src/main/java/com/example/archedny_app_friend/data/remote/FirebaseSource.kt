@@ -29,6 +29,8 @@ class FirebaseSource @Inject constructor(
 
     fun getUser() = auth.currentUser
 
+    fun logOut()=auth.signOut()
+
     fun registerWithPhone(
         phone: String,
         activity: Activity,

@@ -23,6 +23,8 @@ class AuthViewModel @Inject constructor(
 
     fun getUser()=repo.getUsert()
 
+    fun logOut()=repo.logOut()
+
     private var _isVerifiying= MutableStateFlow<ResultState<String>>(ResultState.Init)
     val isVerifiying:StateFlow<ResultState<String>> get() = _isVerifiying
 

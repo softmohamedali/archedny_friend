@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.archedny_app_friend.R
 import com.example.archedny_app_friend.databinding.FragmentHomeMapBinding
 import com.example.archedny_app_friend.domain.models.User
+import com.example.archedny_app_friend.presentation.MainActivity
 import com.example.archedny_app_friend.presentation.body.adapters.FriendItemAdapter
 import com.example.archedny_app_friend.presentation.body.viewmodels.HomeViewModel
 import com.example.archedny_app_friend.services.TrackingService
@@ -52,6 +53,7 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     var friendMarker:Marker?=null
 
     var jopMapMove: Job? = null
+    private var isDrawerOpen=false
 
     private val callback = OnMapReadyCallback { googleMap ->
         mGoogleMap = googleMap
@@ -119,6 +121,16 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     }
 
     private fun setUpViewAction() {
+        binding.imgMenuDrawer.setOnClickListener {
+            if (isDrawerOpen){
+                MainActivity.closeNavDraw()
+                isDrawerOpen=false
+            }else{
+                MainActivity.openNavDraw()
+                isDrawerOpen=true
+            }
+
+        }
         binding.fabStartPauseTrack.setOnClickListener {
             if (TrackingService.isTracking.value){
                 endTracking()

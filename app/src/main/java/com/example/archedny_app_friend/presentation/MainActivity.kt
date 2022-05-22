@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.MotionEventCompat
@@ -14,19 +15,35 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.archedny_app_friend.R
 import com.example.archedny_app_friend.databinding.ActivityMainBinding
+import com.example.archedny_app_friend.presentation.auth.AuthViewModel
 import com.example.archedny_app_friend.utils.myextention.toast
 import com.example.archedny_app_friend.utils.out
+import com.google.android.gms.auth.api.Auth
 import dagger.hilt.android.AndroidEntryPoint
 
 //cheak Permission utility
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(),NavController.OnDestinationChangedListener {
-    private var _binding:ActivityMainBinding?=null
-    private val binding get() = _binding!!
+
+    companion object{
+        private var _binding:ActivityMainBinding?=null
+        private val binding get() = _binding!!
+
+        fun openNavDraw()
+        {
+            binding.drwer.open()
+        }
+
+        fun closeNavDraw()
+        {
+            binding.drwer.close()
+        }
+    }
+
     private lateinit var navController:NavController
     private lateinit var drwarLayout:DrawerLayout
-
+    private val  authViewModel:AuthViewModel by viewModels<AuthViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +55,7 @@ class MainActivity : AppCompatActivity(),NavController.OnDestinationChangedListe
         navController=findNavController(R.id.fragmentContainerView)
         binding.bottomNavigationView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener(this)
+        setUpNavDrawer()
     }
 
     override fun onDestinationChanged(
@@ -70,8 +88,8 @@ class MainActivity : AppCompatActivity(),NavController.OnDestinationChangedListe
             when(it.itemId)
             {
                 R.id. drwer_item_logout-> {
-//                    authViewModel.logOut()
-                    navController.navigate(R.id.glopal_to_logInFragment)
+                    authViewModel.logOut()
+                    navController.navigate(R.id.global_go_to_login)
                     closeNavDraw()
                 }
                 else ->{
@@ -82,15 +100,8 @@ class MainActivity : AppCompatActivity(),NavController.OnDestinationChangedListe
         }
     }
 
-    fun openNavDraw()
-    {
-        binding.drwer.open()
-    }
 
-    fun closeNavDraw()
-    {
-        binding.drwer.close()
-    }
+
 
     override fun onBackPressed() {
         if (binding.drwer.isOpen)
