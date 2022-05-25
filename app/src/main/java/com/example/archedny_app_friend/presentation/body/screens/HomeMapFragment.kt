@@ -1,7 +1,10 @@
 package com.example.archedny_app_friend.presentation.body.screens
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,16 +19,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.archedny_app_friend.R
 import com.example.archedny_app_friend.databinding.FragmentHomeMapBinding
+import com.example.archedny_app_friend.domain.models.MyLatLang
 import com.example.archedny_app_friend.domain.models.User
 import com.example.archedny_app_friend.presentation.MainActivity
+import com.example.archedny_app_friend.presentation.auth.AuthViewModel
 import com.example.archedny_app_friend.presentation.body.adapters.FriendItemAdapter
 import com.example.archedny_app_friend.presentation.body.viewmodels.HomeViewModel
+import com.example.archedny_app_friend.presentation.body.viewmodels.SharedViewModel
 import com.example.archedny_app_friend.services.TrackingService
 import com.example.archedny_app_friend.utils.Constants
 import com.example.archedny_app_friend.utils.PermissionUtitlity
 import com.example.archedny_app_friend.utils.ResultState
 import com.example.archedny_app_friend.utils.myextention.ToastType
 import com.example.archedny_app_friend.utils.myextention.coustomToast
+import com.example.archedny_app_friend.utils.myextention.toast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnCameraIdleListener
@@ -35,8 +42,10 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
 import pub.devrel.easypermissions.EasyPermissions
-
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -44,55 +53,48 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private var _binding: FragmentHomeMapBinding? = null
     private val binding get() = _binding!!
     private val homeViewModel by viewModels<HomeViewModel>()
-    private val friendItemAdapter by lazy { FriendItemAdapter() }
+
+    @Inject
+    lateinit var friendItemAdapter:FriendItemAdapter
+
     private lateinit var mGoogleMap: GoogleMap
     private var friendYouWentShare:User?=null
-    var myMarker:Marker?=null
-    var friendMarker:Marker?=null
+    private var myMarker:Marker?=null
+    private var friendMarker:Marker?=null
+    private lateinit var myLatLang:MutableStateFlow<LatLng?>
+    private lateinit var friendLatLang:MutableStateFlow<LatLng?>
+    private lateinit var polylineOption:PolylineOptions
+
+    private var isMapExtend=false
 
     var jopMapMove: Job? = null
     private var isDrawerOpen=false
 
     private val callback = OnMapReadyCallback { googleMap ->
         mGoogleMap = googleMap
-//        val polylineOption= PolylineOptions()
-//            .color(R.color.red)
-//            .width(12f)
-//            .add(secondLastlatlng)
-//            .add(lastLatLng)
-//        googleMap?.addPolyline(polylineOption)
-//        googleMap?.addPolyline(polylineOption)
-
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
-        googleMap.uiSettings.isZoomControlsEnabled = true
-        googleMap.setOnCameraMoveStartedListener(OnCameraMoveStartedListener { reason ->
-            if (reason == OnCameraMoveStartedListener.REASON_GESTURE) {
-                binding.friendsContainer.visibility = View.GONE
-            }
-        })
-        googleMap.setOnCameraIdleListener(OnCameraIdleListener {
-            jopMapMove?.cancel()
-            jopMapMove = lifecycleScope.launch {
-                delay(1500)
-                binding.friendsContainer.visibility = View.VISIBLE
-            }
-        })
+        setUpLatLangUsersAndObservers()
+        observerCurrentLocationFromServices()
+//        googleMap.uiSettings.isZoomControlsEnabled = true
+//        googleMap.setOnCameraMoveStartedListener(OnCameraMoveStartedListener { reason ->
+//            if (reason == OnCameraMoveStartedListener.REASON_GESTURE) {
+//                binding.friendsContainer.visibility = View.GONE
+//            }
+//        })
+//        googleMap.setOnCameraIdleListener(OnCameraIdleListener {
+//            jopMapMove?.cancel()
+//            jopMapMove = lifecycleScope.launch {
+//                delay(1500)
+//                binding.friendsContainer.visibility = View.VISIBLE
+//            }
+//        })
     }
 
+    //-----------------------------------lifecyle / components----------------------------
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -104,6 +106,23 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         return binding.root
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (PermissionUtitlity.hasLocationPermissin(requireContext())) {
+            binding.tvPermission.visibility = View.GONE
+        } else {
+            binding.tvPermission.visibility = View.VISIBLE
+        }
+    }
+
+
+
+    //-----------------------------------setups----------------------------
     private fun setUp() {
         if (PermissionUtitlity.hasLocationPermissin(requireContext())) {
             binding.tvPermission.visibility = View.GONE
@@ -118,7 +137,6 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         )
         homeViewModel.getMyFreiends()
         setUpView()
-        setUpMarkersIcon()
         setUpViewAction()
         setUpObservers()
 
@@ -146,6 +164,17 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                 startTracking()
             }
 
+        }
+        binding.fabMapState.setOnClickListener {
+            if (isMapExtend){
+                binding.friendsContainer.visibility = View.VISIBLE
+                binding.fabMapState.rotation = 180f
+                isMapExtend=false
+            }else{
+                binding.friendsContainer.visibility = View.GONE
+                binding.fabMapState.rotation = 0f
+                isMapExtend=true
+            }
         }
         binding.fabSearch.setOnClickListener {
             findNavController().navigate(R.id.action_homeMapFragment2_to_searshFragment)
@@ -184,7 +213,6 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
     private fun setUpObservers() {
         observerIsTrackingFromServices()
-        observerCurrentLocationFromServices()
         observersUsersFreindFromHomeViewModel()
         observerShareLocationFromHomeViewModel()
         observerYourFreindLocation()
@@ -197,20 +225,49 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 
-    override fun onResume() {
-        super.onResume()
-        if (PermissionUtitlity.hasLocationPermissin(requireContext())) {
-            binding.tvPermission.visibility = View.GONE
-        } else {
-            binding.tvPermission.visibility = View.VISIBLE
+
+    fun setUpLatLangUsersAndObservers(){
+        myLatLang = MutableStateFlow(null)
+        var myPolyLine:Polyline?=null
+        friendLatLang = MutableStateFlow(null)
+        var friendPolyLine:Polyline?=null
+        lifecycleScope.launchWhenStarted{
+            myLatLang.collect { my->
+                my?.let {
+                    friendLatLang.value.let {friend ->
+                        friendPolyLine?.remove()
+                        myPolyLine?.remove()
+                        polylineOption = PolylineOptions()
+                            .color(R.color.purple_500)
+                            .width(12f)
+                            .add(my)
+                            .add(friend)
+                        myPolyLine=mGoogleMap.addPolyline(polylineOption)
+                    }
+                }
+            }
+        }
+        lifecycleScope.launchWhenStarted{
+            friendLatLang.collect { friend->
+                friend?.let {
+                    myLatLang.value?.let {my->
+                        myPolyLine?.remove()
+                        friendPolyLine?.remove()
+                        polylineOption = PolylineOptions()
+                            .color(R.color.purple_500)
+                            .width(12f)
+                            .add(friend)
+                            .add(my)
+                        friendPolyLine=mGoogleMap.addPolyline(polylineOption)
+                    }
+                }
+            }
         }
     }
 
+
+    // --------------------------actions------------------------------
 
     fun sendActionToService(action: String) {
         Intent(requireContext(), TrackingService::class.java).also {
@@ -245,11 +302,6 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         }
     }
 
-    fun setUpMarkersIcon(){
-        myMarker?.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_run))
-        friendMarker?.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_run))
-    }
-
     private fun observerCurrentLocationFromServices() {
         lifecycleScope.launchWhenStarted {
             TrackingService.currentLocation.collect { location ->
@@ -259,8 +311,9 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                         MarkerOptions()
                             .position(LatLng(it.latitude, it.longitude))
                             .title("me")
+                            .icon(bitmapDescriptorFromVector(requireContext(),R.drawable.ic_run))
                     )
-
+                    myLatLang.value=LatLng(it.latitude, it.longitude)
 //                    mGoogleMap.moveCamera(
 //                        CameraUpdateFactory.newLatLng(
 //                            LatLng(
@@ -329,7 +382,7 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             homeViewModel.friendLocation.collect{
                 when{
                     it is ResultState.IsLoading ->{
-                        binding.imgDownload.alpha=0.5f
+                        binding.imgDownload.alpha=0.3f
                     }
                     it is ResultState.IsSucsses ->{
                         binding.imgDownload.alpha=1f
@@ -338,9 +391,12 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                             friendMarker = mGoogleMap.addMarker(
                                 MarkerOptions()
                                     .position(LatLng(lat.latitude, lat.longitude))
-                                    .title("me")
+                                    .title("my friend")
+                                    .icon(bitmapDescriptorFromVector(requireContext(),R.drawable.ic_run))
                             )
+                            friendLatLang.value=LatLng(lat.latitude, lat.longitude)
                         }
+
                     }
                     it is ResultState.IsError ->{
                         coustomToast(
@@ -375,5 +431,24 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
+
+    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
+        val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
+        vectorDrawable!!.setBounds(
+            0,
+            0,
+            vectorDrawable.intrinsicWidth,
+            vectorDrawable.intrinsicHeight
+        )
+        val bitmap = Bitmap.createBitmap(
+            vectorDrawable.intrinsicWidth,
+            vectorDrawable.intrinsicHeight,
+            Bitmap.Config.ARGB_8888
+        )
+        val canvas = Canvas(bitmap)
+        vectorDrawable.draw(canvas)
+        return BitmapDescriptorFactory.fromBitmap(bitmap)
+    }
+
 
 }

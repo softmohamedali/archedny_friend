@@ -84,6 +84,22 @@
                             app:tint="@color/purple_500" />
                     </com.google.android.material.card.MaterialCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_map_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="@color/purple_500"
+                    android:clickable="true"
+                    android:contentDescription="fab"
+                    android:src="@drawable/ic_up"
+                    app:fabSize="mini"
+                    android:rotation="180"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:tint="@color/white" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -194,7 +210,7 @@
                 android:clickable="true"
                 android:src="@drawable/ic_start"
                 app:tint="@color/white"
-                android:backgroundTint="@color/start"
+                app:backgroundTint="@color/start"
                 app:layout_constraintBottom_toTopOf="@+id/fab_search"
                 app:layout_constraintEnd_toEndOf="@+id/fab_search"
                 app:layout_constraintStart_toStartOf="@+id/fab_search" />
@@ -223,6 +239,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/img_upload"
                 app:layout_constraintEnd_toStartOf="@+id/img_upload"
                 app:layout_constraintTop_toTopOf="@+id/img_upload" />
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

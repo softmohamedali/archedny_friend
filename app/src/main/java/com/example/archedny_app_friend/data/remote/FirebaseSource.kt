@@ -11,7 +11,6 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -76,16 +75,23 @@ class FirebaseSource @Inject constructor(
         return ref.document(mUser.id!!).set(user)
     }
 
-    fun getUser2(id: String) =
+    fun getUser(id: String) =
         firestore.collection(Constants.USER_COLLECTION).document(id).get()
 
 
-    fun getMyFriend() = firestore.collection(Constants.USER_COLLECTION).document(getUser()!!.uid)
-        .collection("chatchennel")
+    fun getMyFriend(userId: String)= firestore.collection(Constants.USER_COLLECTION).document(userId)
+            .collection("chatchennel")
 
+    suspend fun getCurrentUserPhone(userId: String)=firestore.collection(Constants.USER_COLLECTION)
+        .document(userId)
+        .get()
+        .await()
+        .toObject(User::class.java)!!
+        .phone
 
-    fun searchPhone(query: String) = firestore.collection(Constants.USER_COLLECTION)
+    fun searchPhone(query: String,myphone:String) = firestore.collection(Constants.USER_COLLECTION)
         .orderBy("phone")
+        .whereNotEqualTo("phone",myphone)
         .startAt(query.trim())
         .endAt(query.trim() + "\uF8FF")
         .startAt(query.trim().uppercase(Locale.ROOT))

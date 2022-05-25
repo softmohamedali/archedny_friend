@@ -29,14 +29,17 @@ class HomeViewModel @Inject constructor(
     fun getMyFreiends() {
         viewModelScope.launch(Dispatchers.IO) {
             _users.emit(ResultState.IsLoading)
-            repo.getMyFriends().addSnapshotListener { value, error ->
-                if (error == null) {
-                    handleGetFriends(value!!)
-                } else {
-                    _users.value = ResultState.IsError(error.message!!)
+            if (repo.getUsert()?.uid!=null){
+                repo.getMyFriends(repo.getUsert()?.uid!!).addSnapshotListener { value, error ->
+                    if (error == null) {
+                        handleGetFriends(value!!)
+                    } else {
+                        _users.value = ResultState.IsError(error.message!!)
+                    }
                 }
+            }else{
+                _users.value = ResultState.IsError("please login to continue")
             }
-
         }
     }
 
@@ -63,7 +66,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    suspend fun getUser(id: String )=repo.getUser2(id).await()
+    suspend fun getUser(id: String )=repo.getUser(id).await()
 
     private var _isSaherdIt = MutableStateFlow<ResultState<Boolean>>(ResultState.Init)
     var isSaherdIt: StateFlow<ResultState<Boolean>> = _isSaherdIt
@@ -88,7 +91,13 @@ class HomeViewModel @Inject constructor(
             _friendLocation.emit(ResultState.IsLoading)
             repo.getFriendLocation(friendId).addSnapshotListener { value, error ->
                 if (error==null){
-                    _friendLocation.value=ResultState.IsSucsses(value!!.toObject(MyLatLang::class.java)!!)
+                    if (value!=null){
+                        _friendLocation.value=ResultState.IsSucsses(
+                            value.toObject(MyLatLang::class.java)?:MyLatLang()
+                        )
+                    }else{
+                        _friendLocation.value=ResultState.IsError("please ask your friend to share his location")
+                    }
                 }else{
                     _friendLocation.value=ResultState.IsError(error.message?:"")
                 }

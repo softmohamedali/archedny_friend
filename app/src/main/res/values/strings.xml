@@ -39,4 +39,5 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="log_out">Log out</string>
+    <string name="setting_ui">Setting Ui</string>
 </resources>

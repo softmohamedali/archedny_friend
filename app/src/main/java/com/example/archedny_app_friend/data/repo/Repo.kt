@@ -5,12 +5,8 @@ import com.example.archedny_app_friend.data.remote.FirebaseSource
 import com.example.archedny_app_friend.domain.models.User
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthProvider
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -49,7 +45,7 @@ class Repo @Inject constructor(
 
     fun saveUserInfo(user: User)=firebaseSource.saveUserInfo(user)
 
-    fun searchPhone(query:String)=firebaseSource.searchPhone(query)
+    fun searchPhone(query:String,myPhone:String)=firebaseSource.searchPhone(query,myPhone)
 
     fun createChatChaneel(
         freindId:String,
@@ -71,9 +67,11 @@ class Repo @Inject constructor(
     }
 
 
-    fun getUser2(id:String)= firebaseSource.getUser2(id)
+    fun getUser(id:String)= firebaseSource.getUser(id)
 
-    fun getMyFriends()=firebaseSource.getMyFriend()
+    fun getMyFriends(userId: String)=firebaseSource.getMyFriend(userId)
+
+    suspend fun getCurrentUserPhone(userId: String)=firebaseSource.getCurrentUserPhone(userId)
 
     suspend fun shareLocationWithMyFriend(friendId: String, latlang: LatLng) =
         withContext(Dispatchers.IO){

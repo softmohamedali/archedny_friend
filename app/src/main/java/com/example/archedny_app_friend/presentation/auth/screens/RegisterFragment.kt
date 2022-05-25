@@ -66,6 +66,7 @@ class RegisterFragment : Fragment() {
                     is ResultState.IsError ->{
                         binding.progressRegister.isVisible=false
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                        out(it.message.toString())
                     }
                     is ResultState.IsSucsses ->{
                         binding.progressRegister.isVisible=false

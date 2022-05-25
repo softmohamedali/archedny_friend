@@ -25,7 +25,8 @@ class SearshViewModel @Inject constructor(
     fun searchPhone(phone:String){
         viewModelScope.launch(Dispatchers.IO) {
             _phones.emit(ResultState.IsLoading)
-            repo.searchPhone(phone).addOnCompleteListener {
+            val userId:String=repo.getUsert()?.uid!!
+            repo.searchPhone(phone,repo.getCurrentUserPhone(userId)!!).addOnCompleteListener {
                 if (it.isSuccessful){
                     _phones.value=DataManeger.handledata(it.result)
                 }else{

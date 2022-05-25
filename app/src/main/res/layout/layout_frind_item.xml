@@ -7,7 +7,8 @@
     android:layout_marginTop="@dimen/_10sdp"
     android:layout_marginEnd="@dimen/_5sdp"
     app:cardCornerRadius="15dp"
-    app:strokeWidth="0.8dp"
+    app:strokeWidth="2dp"
+    android:id="@+id/item_container"
     app:strokeColor="@color/purple_500"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -21,25 +22,18 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:text="TextView"
             android:textColor="@color/purple_500"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/checkBox"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/purple_500"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
