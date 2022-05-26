@@ -6,9 +6,11 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.MotionEventCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
@@ -16,10 +18,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.archedny_app_friend.R
 import com.example.archedny_app_friend.databinding.ActivityMainBinding
 import com.example.archedny_app_friend.presentation.auth.AuthViewModel
+import com.example.archedny_app_friend.presentation.body.viewmodels.SharedViewModel
 import com.example.archedny_app_friend.utils.myextention.toast
 import com.example.archedny_app_friend.utils.out
 import com.google.android.gms.auth.api.Auth
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 //cheak Permission utility
 
@@ -42,7 +46,9 @@ class MainActivity : AppCompatActivity(),NavController.OnDestinationChangedListe
     }
 
     private lateinit var navController:NavController
-    private val  authViewModel:AuthViewModel by viewModels<AuthViewModel>()
+    private val  authViewModel:AuthViewModel by viewModels()
+    private val  sharedViewModel:SharedViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +61,24 @@ class MainActivity : AppCompatActivity(),NavController.OnDestinationChangedListe
         binding.bottomNavigationView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener(this)
         setUpNavDrawer()
+        setupObservers()
+    }
+
+    private fun setupObservers() {
+        lifecycleScope.launchWhenStarted {
+            sharedViewModel.isDarkTheme.collect {
+                if (it){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                }else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
+            }
+        }
+        lifecycleScope.launchWhenStarted {
+            sharedViewModel.lang.collect {
+                changeLang(it)
+            }
+        }
     }
 
     override fun onDestinationChanged(
@@ -91,12 +115,27 @@ class MainActivity : AppCompatActivity(),NavController.OnDestinationChangedListe
                     navController.navigate(R.id.global_go_to_login)
                     closeNavDraw()
                 }
+                R.id.drwer_item_settingui->{
+                    navController.navigate(R.id.action_homeMapFragment2_to_settingFragment)
+                    closeNavDraw()
+                }
                 else ->{
 
                 }
             }
             true
         }
+    }
+
+
+    private fun changeLang(localcode:String)
+    {
+        val local= Locale(localcode)
+        Locale.setDefault(local)
+        val resourses=this.resources
+        val config=resourses.configuration
+        config.setLocale(local)
+        resourses.updateConfiguration(config,resourses.displayMetrics)
     }
 
 

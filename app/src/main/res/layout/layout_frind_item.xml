@@ -9,7 +9,7 @@
     app:cardCornerRadius="15dp"
     app:strokeWidth="2dp"
     android:id="@+id/item_container"
-    app:strokeColor="@color/purple_500"
+    app:strokeColor="@color/item_phone_border"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +25,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:text="TextView"
-            android:textColor="@color/purple_500"
+            android:textColor="@color/item_phone_text"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"

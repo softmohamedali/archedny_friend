@@ -24,7 +24,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/purple_500" />
+            app:tint="@color/icons" />
 
         <TextView
             android:id="@+id/textView10"
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:text="@string/search"
-            android:textColor="@color/black"
+            android:textColor="@color/te_main_title"
             android:textSize="@dimen/_18sdp"
             android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="@+id/img_back"
@@ -55,9 +55,10 @@
             android:id="@+id/et_search"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-            android:background="#EFEEEE"
+            android:background="@color/et_back"
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="@dimen/_12sdp"
+            android:drawableTint="@color/icons"
             android:hint="@string/search_by_phone"
             android:padding="@dimen/_10sdp" />
     </com.google.android.material.card.MaterialCardView>

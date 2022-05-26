@@ -40,4 +40,8 @@
     <string name="close">Close</string>
     <string name="log_out">Log out</string>
     <string name="setting_ui">Setting Ui</string>
+    <string name="my_setting">My Setting</string>
+    <string name="auto_extend_map">Auto Extend Map</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="arabic_langushe">Arabic Langushe</string>
 </resources>

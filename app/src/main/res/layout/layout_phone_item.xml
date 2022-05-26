@@ -8,7 +8,7 @@
     android:layout_marginEnd="@dimen/_10sdp"
     app:cardCornerRadius="15dp"
     app:strokeWidth="0.8dp"
-    app:strokeColor="@color/purple_500"
+    app:strokeColor="@color/item_phone_border"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +24,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:text="TextView"
-            android:textColor="@color/purple_500"
+            android:textColor="@color/item_phone_text"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            app:tint="@color/purple_500"
+            app:tint="@color/item_phone_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearshViewModel @Inject constructor(
-    private val repo: Repo
+    private val repo: Repo,
 ):ViewModel() {
 
     private var _phones= MutableStateFlow<ResultState<List<User>>>(ResultState.Init)

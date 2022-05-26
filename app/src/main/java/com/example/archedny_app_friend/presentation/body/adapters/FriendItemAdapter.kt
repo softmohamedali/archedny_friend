@@ -52,9 +52,9 @@ class FriendItemAdapter @Inject constructor(
                 if (i!=position)
                 {
                     holders[i].view.itemContainer.strokeColor =
-                        ContextCompat.getColor(context, R.color.purple_500)
+                        ContextCompat.getColor(context, R.color.item_phone_border)
                     holders[i].view.tvPhone.setTextColor(
-                        ContextCompat.getColor(context, R.color.purple_500)
+                        ContextCompat.getColor(context, R.color.item_phone_text)
                     )
                 }else{
                     holders[i].view.itemContainer.strokeColor =

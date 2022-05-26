@@ -33,6 +33,7 @@ import com.example.archedny_app_friend.utils.ResultState
 import com.example.archedny_app_friend.utils.myextention.ToastType
 import com.example.archedny_app_friend.utils.myextention.coustomToast
 import com.example.archedny_app_friend.utils.myextention.toast
+import com.example.archedny_app_friend.utils.out
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnCameraIdleListener
@@ -53,7 +54,7 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private var _binding: FragmentHomeMapBinding? = null
     private val binding get() = _binding!!
     private val homeViewModel by viewModels<HomeViewModel>()
-
+    private val sharedViewModel by viewModels<SharedViewModel>()
     @Inject
     lateinit var friendItemAdapter:FriendItemAdapter
 
@@ -74,19 +75,8 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         mGoogleMap = googleMap
         setUpLatLangUsersAndObservers()
         observerCurrentLocationFromServices()
-//        googleMap.uiSettings.isZoomControlsEnabled = true
-//        googleMap.setOnCameraMoveStartedListener(OnCameraMoveStartedListener { reason ->
-//            if (reason == OnCameraMoveStartedListener.REASON_GESTURE) {
-//                binding.friendsContainer.visibility = View.GONE
-//            }
-//        })
-//        googleMap.setOnCameraIdleListener(OnCameraIdleListener {
-//            jopMapMove?.cancel()
-//            jopMapMove = lifecycleScope.launch {
-//                delay(1500)
-//                binding.friendsContainer.visibility = View.VISIBLE
-//            }
-//        })
+        observeMapToolIsOutoExtended()
+
     }
 
     //-----------------------------------lifecyle / components----------------------------
@@ -216,6 +206,7 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         observersUsersFreindFromHomeViewModel()
         observerShareLocationFromHomeViewModel()
         observerYourFreindLocation()
+
     }
 
     private fun setUpRecyclerView() {
@@ -334,6 +325,37 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                         friendYouWentShare!!.id!!,
                         LatLng(it.latitude,it.longitude)
                     )
+                }
+            }
+        }
+    }
+
+
+    private fun observeMapToolIsOutoExtended(){
+        lifecycleScope.launchWhenStarted {
+            sharedViewModel.isExtendMap.collect{
+                out("is extanded"+it.toString())
+                if(it){
+                    mGoogleMap.uiSettings.isZoomControlsEnabled = true
+                    mGoogleMap.setOnCameraMoveStartedListener { reason ->
+                        if (reason == OnCameraMoveStartedListener.REASON_GESTURE) {
+                            binding.friendsContainer.visibility = View.GONE
+                        }
+                    }
+                    mGoogleMap.setOnCameraIdleListener{
+                        jopMapMove?.cancel()
+                        jopMapMove = lifecycleScope.launch {
+                            delay(1500)
+                            binding.friendsContainer.visibility = View.VISIBLE
+                        }
+                    }
+                    binding.fabMapState.visibility=View.GONE
+                    isMapExtend=false
+                }else{
+                    mGoogleMap.uiSettings.isZoomControlsEnabled = false
+                    mGoogleMap.setOnCameraMoveStartedListener(null)
+                    mGoogleMap.setOnCameraIdleListener(null)
+                    binding.fabMapState.visibility=View.VISIBLE
                 }
             }
         }

@@ -2,11 +2,14 @@ package com.example.archedny_app_friend.utils
 
 object Constants {
 
+    const val IS_DARK_THEME_KEY="is_dark_theme_key"
+    const val EXTEND_MAP_KEY="extend_map_key"
+    const val LANG_KEY="lang_key"
     const val USER_COLLECTION: String ="users"
     const val CHAT_CHANNELS_COLLECTION: String ="chatchannels"
     const val SENDER_LOCATION_DOCUMENT: String ="sender"
     const val RECIVER_LOCATION_DOCUMENT: String ="reciver"
-    const val DATASTORE_MAH7LY_NAME: String =""
+    const val DATASTORE_ARCHEDNY_NAME: String ="archedny_datastore"
 
     //location service constatns
     const val REQUEST_CODE_LOCATION=10

@@ -11,6 +11,23 @@
     <color name="start">#24CC00</color>
     <color name="pause">#EC0404</color>
 
+    //component
+    <color name="main">#FF6200EE</color>
+    <color name="sw_checked">#FF6200EE</color>
+    <color name="sw_unchecked">#D1D1D1</color>
+    <color name="main_back">#FFFFFF</color>
+    <color name="te_main_title">#1C1C1C</color>
+    <color name="fab_main">#FF6200EE</color>
+    <color name="fab_icon">#FFFFFF</color>
+    <color name="icons">#FF6200EE</color>
+    <color name="btn_back">#FF6200EE</color>
+    <color name="et_back">#EEEEEE</color>
+    <color name="btn_back_icons">#FFFFFF</color>
+    <color name="item_phone_text">#FF6200EE</color>
+    <color name="item_phone_border">#FF6200EE</color>
+    <color name="status">#FF6200EE</color>
+
+
     <color name="positive">#24CC00</color>
     <color name="negative">#EC0404</color>
 

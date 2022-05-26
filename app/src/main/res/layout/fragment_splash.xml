@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_back"
     tools:context=".presentation.auth.screens.SplashFragment">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_marginTop="24dp"
         android:textSize="@dimen/_25sdp"
         android:text="@string/archedny"
-        android:textColor="@color/black"
+        android:textColor="@color/te_main_title"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +25,7 @@
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
         android:src="@drawable/ic_marker"
-        app:tint="@color/purple_500"
+        app:tint="@color/icons"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

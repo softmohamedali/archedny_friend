@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Archedny_app_friend</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mobile_number">رقم الهاتف</string>
+    <string name="password">كلمه المرور</string>
+    <string name="sing_up">التسجيل</string>
+    <string name="don_t_have_an_account">لا امتلك حساب?</string>
+    <string name="contained_button">Contained button</string>
+    <string name="textview">TextView</string>
+    <string name="log_in">تسجيل الدخول</string>
+    <string name="what_is_your_phone_number">ما هو رقم هاتف</string>
+    <string name="we_will_send_you_a_verfication_code">سيتم ارسال رمز التاكيد في بضع ثواني</string>
+    <string name="countinue">اكمال</string>
+    <string name="phone_n_verification">التحقق من رقم الهاتف</string>
+    <string name="if_you_didn_t_receive_a_code">اذا لم تستقبل رقم التاكيد!</string>
+    <string name="resend">اعاده الارسال</string>
+    <string name="please_type_the_verification_code">الرجاء ادخال رمز التحقق</string>
+    <string name="sent_to">ارسال الى</string>
+    <string name="verifiy">تحقق</string>
+    <string name="can_send_code_after">تسطيع ارسال الرمز مره اخرى بعد</string>
+    <string name="request_loading">الطلب قيد ارسال</string>
+    <string name="archedny">Archedny</string>
+    <string name="my_friends">اصدقائي</string>
+    <string name="skip">تخطي</string>
+    <string name="phone">رقم الهاتف</string>
+    <string name="user_name">اسم المستخدم</string>
+    <string name="save_info">حفظ المعلومات</string>
+    <string name="please_accepte_permission_to_have_utility_of_our_application">الرجاء قبول الصلحيات من اجل استخدام التطبيق</string>
+    <string name="search">بحث</string>
+    <string name="search_by_phone_number">البحث برقم الهاتف</string>
+    <string name="search_by_phone">البحث برقم الهاتف</string>
+    <string name="enter_phone_to_search">ادخل رقم الهاتف للبحث</string>
+    <string name="sucess_toast_meassge">العمليه نجحت</string>
+    <string name="error">خطا</string>
+    <string name="are_you_went_to_send_request_to_asking_your_frind_to_traking_his_location">هل تريد ارسال طلب للصديقك لمشاركه موقعه</string>
+    <string name="yes_send_request">نعم ارسل طلب</string>
+    <string name="no_cancle">لا الغاء</string>
+    <string name="open">فتح</string>
+    <string name="close">غلق</string>
+    <string name="log_out">تسجيل الخروج</string>
+    <string name="setting_ui">اعدادات الواجهه</string>
+    <string name="my_setting">اعداداتي</string>
+    <string name="auto_extend_map">تكبير تلقائي للخريطه</string>
+    <string name="dark_theme">الوضع المظلم</string>
+    <string name="arabic_langushe">اللغه العربيه</string>
+</resources>

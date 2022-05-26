@@ -50,7 +50,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:strokeColor="@color/purple_500"
+                        app:strokeColor="@color/icons"
+                        android:backgroundTint="@color/btn_back_icons"
                         app:strokeWidth="1dp">
 
                         <ImageButton
@@ -59,7 +60,7 @@
                             android:layout_height="match_parent"
                             android:backgroundTint="@color/none"
                             android:src="@drawable/ic_share"
-                            app:tint="@color/purple_500" />
+                            app:tint="@color/icons" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
@@ -72,7 +73,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:strokeColor="@color/purple_500"
+                        app:strokeColor="@color/icons"
+                        android:backgroundTint="@color/btn_back_icons"
                         app:strokeWidth="1dp">
 
                         <ImageButton
@@ -81,7 +83,7 @@
                             android:layout_height="match_parent"
                             android:backgroundTint="@color/none"
                             android:src="@drawable/ic_menu"
-                            app:tint="@color/purple_500" />
+                            app:tint="@color/icons" />
                     </com.google.android.material.card.MaterialCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -91,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:backgroundTint="@color/purple_500"
+                    android:backgroundTint="@color/fab_main"
                     android:clickable="true"
                     android:contentDescription="fab"
                     android:src="@drawable/ic_up"
@@ -99,7 +101,7 @@
                     android:rotation="180"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:tint="@color/white" />
+                    app:tint="@color/fab_icon" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -109,6 +111,7 @@
             android:id="@+id/friends_container"
             android:layout_width="0dp"
             android:layout_height="@dimen/_250sdp"
+            android:background="@color/main_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -141,7 +144,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/my_friends"
-                android:textColor="@color/black"
+                android:textColor="@color/te_main_title"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/img_download"
@@ -164,12 +167,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/purple_500"
+                android:backgroundTint="@color/fab_main"
                 android:clickable="true"
                 android:src="@drawable/ic_search"
+                app:strokeWidth="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:tint="@color/white" />
+                app:tint="@color/fab_icon" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/pb_fr_home"
@@ -197,7 +201,7 @@
                 android:id="@+id/view"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
-                android:background="@color/purple_500"
+                android:background="@color/icons"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
