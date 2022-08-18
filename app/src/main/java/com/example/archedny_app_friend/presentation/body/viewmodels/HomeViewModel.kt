@@ -4,7 +4,7 @@ package com.example.archedny_app_friend.presentation.body.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.archedny_app_friend.data.repo.Repo
+import com.example.archedny_app_friend.data.repo.RepoManner
 import com.example.archedny_app_friend.domain.models.MyLatLang
 import com.example.archedny_app_friend.domain.models.User
 import com.example.archedny_app_friend.utils.ResultState
@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repo: Repo
+    private val repo: RepoManner
 ) : ViewModel() {
 
     private var _users = MutableStateFlow<ResultState<MutableList<User>>>(ResultState.Init)
@@ -105,5 +105,6 @@ class HomeViewModel @Inject constructor(
 
         }
     }
+
 
 }

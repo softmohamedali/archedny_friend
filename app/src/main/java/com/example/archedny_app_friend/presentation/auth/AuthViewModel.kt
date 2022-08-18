@@ -3,12 +3,10 @@ package com.example.archedny_app_friend.presentation.auth
 import android.app.Activity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.archedny_app_friend.data.repo.Repo
+import com.example.archedny_app_friend.data.repo.RepoManner
 import com.example.archedny_app_friend.domain.models.User
 import com.example.archedny_app_friend.utils.ResultState
-import com.example.archedny_app_friend.utils.out
 import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private  val repo: Repo
+    private  val repo: RepoManner
 ):ViewModel() {
 
     fun getUser()=repo.getUsert()

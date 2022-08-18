@@ -2,12 +2,10 @@ package com.example.archedny_app_friend.presentation.body.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.archedny_app_friend.data.repo.Repo
+import com.example.archedny_app_friend.data.repo.RepoManner
 import com.example.archedny_app_friend.domain.models.User
 import com.example.archedny_app_friend.utils.DataManeger
 import com.example.archedny_app_friend.utils.ResultState
-import com.example.archedny_app_friend.utils.myextention.toast
-import com.example.archedny_app_friend.utils.out
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearshViewModel @Inject constructor(
-    private val repo: Repo,
+    private val repo: RepoManner,
 ):ViewModel() {
 
     private var _phones= MutableStateFlow<ResultState<List<User>>>(ResultState.Init)

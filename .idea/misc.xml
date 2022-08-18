@@ -7,6 +7,7 @@
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/drawable/ic_run.xml" value="0.142" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/drawable/ic_upload.xml" value="0.142" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_chat_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_dialog_send_tracking_request.xml" value="0.2" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_forget_password.xml" value="0.25416666666666665" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
@@ -19,6 +20,7 @@
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_splash.xml" value="0.25416666666666665" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_user_info.xml" value="0.25416666666666665" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_verification_phone.xml" value="0.25416666666666665" />
+        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/layout_friend_chat_item.xml" value="0.25416666666666665" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/layout_frind_item.xml" value="0.264" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/layout_phone_item.xml" value="0.25416666666666665" />
         <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/layout_toast_sucess.xml" value="0.253125" />

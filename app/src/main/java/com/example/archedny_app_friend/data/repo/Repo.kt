@@ -4,28 +4,34 @@ import android.app.Activity
 import com.example.archedny_app_friend.data.remote.FirebaseSource
 import com.example.archedny_app_friend.domain.models.User
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-@ViewModelScoped
-class Repo @Inject constructor(
+class Repo constructor(
     private val firebaseSource: FirebaseSource
-) {
+): RepoManner {
 
-    fun getUsert()=firebaseSource.getUser()
+    override fun getUsert(): FirebaseUser?= firebaseSource.getUser()
 
-    fun logOut()=firebaseSource.logOut()
+    override fun logOut()=firebaseSource.logOut()
 
-    suspend fun registerWithPhone(
-        phone:String,
+    override suspend fun registerWithPhone(
+        phone: String,
         activity: Activity,
-        onVerificationCompleted:()->Unit,
-        onVerificationFailed:(String)->Unit,
-        onCodeSent:(String)->Unit,
-    ){
+        onVerificationCompleted: () -> Unit,
+        onVerificationFailed: (String) -> Unit,
+        onCodeSent: (String) -> Unit
+    ) {
         firebaseSource.registerWithPhone(
             phone,
             activity,
@@ -35,23 +41,22 @@ class Repo @Inject constructor(
         )
     }
 
-    fun getCredintial(
-        code:String,
-        verificationId:String
-    )= firebaseSource.getCredintial(code,verificationId)
+    override fun getCredintial(code: String, verificationId: String): PhoneAuthCredential=
+        firebaseSource.getCredintial(code,verificationId)
 
-    fun singInWithCredential(credential: PhoneAuthCredential)=
+    override fun singInWithCredential(credential: PhoneAuthCredential): Task<AuthResult> =
         firebaseSource.singInWithCredential(credential)
 
-    fun saveUserInfo(user: User)=firebaseSource.saveUserInfo(user)
+    override fun saveUserInfo(user: User): Task<Void> =firebaseSource.saveUserInfo(user)
 
-    fun searchPhone(query:String,myPhone:String)=firebaseSource.searchPhone(query,myPhone)
+    override fun searchPhone(query: String, myPhone: String): Task<QuerySnapshot> =
+        firebaseSource.searchPhone(query,myPhone)
 
-    fun createChatChaneel(
-        freindId:String,
-        onSuccess:()->Unit,
-        onError:(String)->Unit
-    ){
+    override fun createChatChaneel(
+        freindId: String,
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
         firebaseSource.createChannel(
             friendId =freindId,
             onSucess ={
@@ -66,19 +71,23 @@ class Repo @Inject constructor(
         )
     }
 
+    override fun getUser(id: String): Task<DocumentSnapshot> = firebaseSource.getUser(id)
 
-    fun getUser(id:String)= firebaseSource.getUser(id)
+    override fun getMyFriends(userId: String): CollectionReference =
+        firebaseSource.getMyFriend(userId)
 
-    fun getMyFriends(userId: String)=firebaseSource.getMyFriend(userId)
+    override suspend fun getCurrentUserPhone(userId: String): String? =
+        firebaseSource.getCurrentUserPhone(userId)
 
-    suspend fun getCurrentUserPhone(userId: String)=firebaseSource.getCurrentUserPhone(userId)
-
-    suspend fun shareLocationWithMyFriend(friendId: String, latlang: LatLng) =
+    override suspend fun shareLocationWithMyFriend(friendId: String, latlang: LatLng): Task<Void>  =
         withContext(Dispatchers.IO){
             firebaseSource.shareLocationWithMyFriend(friendId, latlang)
         }
 
-    suspend fun getFriendLocation( friendId: String) = firebaseSource.getFriendLocation(friendId)
+    override suspend fun getFriendLocation(friendId: String): DocumentReference =
+        firebaseSource.getFriendLocation(friendId)
+
+
 
 
 
