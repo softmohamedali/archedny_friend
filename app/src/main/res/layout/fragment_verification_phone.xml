@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.auth.screens.VerificationPhoneFragment">
+    tools:context=".future_auth.presentation.screens.VerificationPhoneFragment">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

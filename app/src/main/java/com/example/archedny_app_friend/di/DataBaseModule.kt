@@ -2,7 +2,7 @@
 //
 //import android.content.Context
 //import androidx.room.Room
-//import com.example.archedny_app_friend.data.local.MyDao
+//import com.example.archedny_app_friend.core.data.local.MyDao
 //import com.example.archedny_app_friend.data.local.MyDataBase
 //import dagger.Module
 //import dagger.Provides

@@ -1,10 +1,10 @@
 package com.example.archedny_app_friend.presentation.body.viewmodels
 
-import com.example.archedny_app_friend.utils.ProvideDispatchers
+import com.example.archedny_app_friend.core.domain.utils.validation.ProvideDispatchers
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 
-class TestDispatchers:ProvideDispatchers {
+class TestDispatchers: ProvideDispatchers {
     val testDispatcher=TestCoroutineDispatcher()
     override val main: CoroutineDispatcher
         get() =testDispatcher

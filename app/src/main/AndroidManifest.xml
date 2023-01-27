@@ -45,7 +45,7 @@
             android:value="${MAPS_API_KEY}" />
 
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".core.presentation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,7 +54,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".services.TrackingService"
+        <service android:name=".future_main_track.domain.services.TrackingService"
             android:foregroundServiceType="location"/>
         <receiver
             android:name=".utils.common.OTPReceiver"

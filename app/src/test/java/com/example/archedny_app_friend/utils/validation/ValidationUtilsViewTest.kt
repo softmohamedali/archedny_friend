@@ -3,8 +3,7 @@ package com.example.archedny_app_friend.utils.validation
 
 
 
-import com.example.archedny_app_friend.utils.out
-import com.example.util.ValidationUtils
+import com.example.archedny_app_friend.core.domain.utils.validation.ValidationUtils
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 

@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.archedny_app_friend.presentation.auth.screens.SplashFragment"
+        android:name="com.example.archedny_app_friend.future_auth.presentation.screens.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.archedny_app_friend.presentation.auth.screens.RegisterFragment"
+        android:name="com.example.archedny_app_friend.future_auth.presentation.screens.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/verificationPhoneFragment"
-        android:name="com.example.archedny_app_friend.presentation.auth.screens.VerificationPhoneFragment"
+        android:name="com.example.archedny_app_friend.future_auth.presentation.screens.VerificationPhoneFragment"
         android:label="fragment_verification_phone"
         tools:layout="@layout/fragment_verification_phone" >
         <argument
@@ -60,7 +60,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeMapFragment2"
-        android:name="com.example.archedny_app_friend.presentation.body.screens.HomeMapFragment"
+        android:name="com.example.archedny_app_friend.future_main_track.presentation.screens.HomeMapFragment"
         android:label="fragment_home_map"
         tools:layout="@layout/fragment_home_map" >
         <action
@@ -75,17 +75,17 @@
     </fragment>
     <fragment
         android:id="@+id/searshFragment"
-        android:name="com.example.archedny_app_friend.presentation.body.screens.SearshFragment"
+        android:name="com.example.archedny_app_friend.future_main_track.presentation.screens.SearshFragment"
         android:label="fragment_searsh"
         tools:layout="@layout/fragment_searsh" />
     <dialog
         android:id="@+id/dialogSendTrackingRequestFragment"
-        android:name="com.example.archedny_app_friend.presentation.body.screens.DialogSendTrackingRequestFragment"
+        android:name="com.example.archedny_app_friend.future_main_track.presentation.screens.DialogSendTrackingRequestFragment"
         android:label="fragment_dialog_send_tracking_request"
         tools:layout="@layout/fragment_dialog_send_tracking_request" />
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.example.archedny_app_friend.presentation.body.screens.SettingFragment"
+        android:name="com.example.archedny_app_friend.future_main_track.presentation.screens.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
 </navigation>

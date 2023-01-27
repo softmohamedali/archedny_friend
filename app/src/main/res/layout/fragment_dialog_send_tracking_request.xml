@@ -9,7 +9,7 @@
     app:strokeColor="@color/purple_500"
     app:strokeWidth="2dp"
     android:layout_gravity="center"
-    tools:context=".presentation.body.screens.DialogSendTrackingRequestFragment">
+    tools:context=".future_main_track.presentation.screens.DialogSendTrackingRequestFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

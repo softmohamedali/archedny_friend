@@ -1,11 +1,12 @@
 package com.example.archedny_app_friend.presentation.body.viewmodels
 
-import com.example.archedny_app_friend.data.repo.RepoManner
+import com.example.archedny_app_friend.core.domain.repo.RepoManner
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import app.cash.turbine.test
+import com.example.archedny_app_friend.future_main_track.presentation.viewmodels.HomeViewModel
 import com.google.common.truth.Truth.assertThat
 
 class HomeViewModelTest {
@@ -21,7 +22,7 @@ class HomeViewModelTest {
     @Before
     fun setUp() {
         testDispatchers= TestDispatchers()
-        viewModel=HomeViewModel(repoManner)
+        viewModel= HomeViewModel(repoManner)
     }
 
     @Test

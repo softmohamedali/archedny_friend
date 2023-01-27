@@ -1,35 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/drawable/edit_text_phone_code_border.xml" value="0.1425" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/drawable/ic_run.xml" value="0.142" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/drawable/ic_upload.xml" value="0.142" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/activity_main.xml" value="0.176" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_chat_screen.xml" value="0.25416666666666665" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_dialog_send_tracking_request.xml" value="0.2" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_forget_password.xml" value="0.25416666666666665" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_home_map.xml" value="0.536" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_log_in.xml" value="0.25416666666666665" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_login_fragment.xml" value="0.25416666666666665" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_register.xml" value="0.25416666666666665" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_searsh.xml" value="0.25416666666666665" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_setting.xml" value="0.25416666666666665" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_splash.xml" value="0.25416666666666665" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_user_info.xml" value="0.25416666666666665" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/fragment_verification_phone.xml" value="0.25416666666666665" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/layout_friend_chat_item.xml" value="0.25416666666666665" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/layout_frind_item.xml" value="0.264" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/layout_phone_item.xml" value="0.25416666666666665" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/layout_toast_sucess.xml" value="0.253125" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/layout/layout_toast_warning.xml" value="0.253125" />
-        <entry key="..\:/myProjects/Archedny_app_friend/app/src/main/res/menu/nav_drawer_menu.xml" value="0.25416666666666665" />
-      </map>
-    </option>
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
