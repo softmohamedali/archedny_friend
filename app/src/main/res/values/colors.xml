@@ -32,6 +32,7 @@
     <color name="negative">#EC0404</color>
 
     <color name="progress_back">#F3EEFA</color>
+    <color name="back_recieve_text">#8F8F8F</color>
     <color name="error">#DA0303</color>
     <color name="warning">#FFA100</color>
 

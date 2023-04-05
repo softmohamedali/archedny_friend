@@ -5,12 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.archedny_app_friend.databinding.FragmentChatScreenBinding
+import com.example.archedny_app_friend.databinding.FragmentFriendsChatsScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ChatScreenFragment : Fragment() {
-    private var _binding: FragmentChatScreenBinding?=null
+class FriendsChatsScreenFragment : Fragment() {
+    private var _binding: FragmentFriendsChatsScreenBinding?=null
     private val binding get() = _binding!!
 //    private val pohoneItemAdapter by lazy { PhoneItemAdapter() }
 //
@@ -19,7 +19,7 @@ class ChatScreenFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding= FragmentChatScreenBinding.inflate(layoutInflater)
+        _binding= FragmentFriendsChatsScreenBinding.inflate(layoutInflater)
         setUp()
         return binding.root
     }
