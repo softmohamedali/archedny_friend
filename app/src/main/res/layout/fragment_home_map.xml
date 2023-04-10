@@ -60,7 +60,8 @@
                             android:layout_height="match_parent"
                             android:backgroundTint="@color/none"
                             android:src="@drawable/ic_share"
-                            app:tint="@color/icons" />
+                            app:tint="@color/icons"
+                            android:contentDescription="TODO" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
@@ -83,9 +84,34 @@
                             android:layout_height="match_parent"
                             android:backgroundTint="@color/none"
                             android:src="@drawable/ic_menu"
-                            app:tint="@color/icons" />
+                            app:tint="@color/icons"
+                            android:contentDescription="TODO" />
                     </com.google.android.material.card.MaterialCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView5"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/btn_back_icons"
+                    app:cardCornerRadius="40dp"
+                    app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                    app:strokeColor="@color/icons"
+                    app:strokeWidth="1dp">
+
+                    <ImageButton
+                        android:id="@+id/img_chats"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/none"
+                        android:contentDescription="TODO"
+                        android:src="@drawable/ic_chat"
+                        app:tint="@color/icons" />
+                </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab_map_state"
@@ -106,7 +132,6 @@
 
 
         </FrameLayout>
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/friends_container"
             android:layout_width="0dp"
@@ -173,7 +198,8 @@
                 app:strokeWidth="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:tint="@color/fab_icon" />
+                app:tint="@color/fab_icon"
+                android:contentDescription="TODO" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/pb_fr_home"
@@ -217,7 +243,8 @@
                 app:backgroundTint="@color/start"
                 app:layout_constraintBottom_toTopOf="@+id/fab_search"
                 app:layout_constraintEnd_toEndOf="@+id/fab_search"
-                app:layout_constraintStart_toStartOf="@+id/fab_search" />
+                app:layout_constraintStart_toStartOf="@+id/fab_search"
+                android:contentDescription="TODO" />
 
             <ImageView
                 android:id="@+id/img_upload"
@@ -229,7 +256,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/textView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView2"
-                app:tint="@color/purple_500" />
+                app:tint="@color/purple_500"
+                android:contentDescription="TODO" />
 
             <ImageView
                 android:id="@+id/img_download"

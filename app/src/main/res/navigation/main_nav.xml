@@ -72,12 +72,19 @@
         <action
             android:id="@+id/action_homeMapFragment2_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_homeMapFragment2_to_friendsChatsScreenFragment"
+            app:destination="@id/friendsChatsScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/searshFragment"
         android:name="com.example.archedny_app_friend.future_main_track.presentation.screens.SearshFragment"
         android:label="fragment_searsh"
-        tools:layout="@layout/fragment_searsh" />
+        tools:layout="@layout/fragment_searsh" >
+        <action
+            android:id="@+id/action_searshFragment_to_friendsChatsScreenFragment"
+            app:destination="@id/friendsChatsScreenFragment" />
+    </fragment>
     <dialog
         android:id="@+id/dialogSendTrackingRequestFragment"
         android:name="com.example.archedny_app_friend.future_main_track.presentation.screens.DialogSendTrackingRequestFragment"
@@ -88,4 +95,25 @@
         android:name="com.example.archedny_app_friend.future_main_track.presentation.screens.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/friendsChatsScreenFragment"
+        android:name="com.example.archedny_app_friend.future_chat.presentation.screens.FriendsChatsScreenFragment"
+        android:label="fragment_friends_chats_screen"
+        tools:layout="@layout/fragment_friends_chats_screen" >
+        <action
+            android:id="@+id/action_friendsChatsScreenFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_friendsChatsScreenFragment_to_searshFragment"
+            app:destination="@id/searshFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.archedny_app_friend.future_chat.presentation.screens.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" >
+        <argument
+            android:name="chat_chanel_id"
+            app:argType="string" />
+    </fragment>
 </navigation>

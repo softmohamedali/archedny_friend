@@ -167,6 +167,10 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             friendYouWentShare=user
             homeViewModel.getFriendLocation(user.id!!)
         }
+
+        binding.imgChats.setOnClickListener {
+            findNavController().navigate(R.id.action_homeMapFragment2_to_friendsChatsScreenFragment)
+        }
     }
 
     private fun endTracking() {

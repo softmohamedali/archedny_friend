@@ -18,7 +18,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tv_phone"
+            android:id="@+id/tv_friend_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -49,7 +49,7 @@
                 android:id="@+id/img_friend"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
-                app:srcCompat="@drawable/ic_add_friends" />
+                />
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.constraintlayout.widget.Guideline
@@ -68,9 +68,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="TextView"
+            android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/tv_phone"
+            app:layout_constraintEnd_toEndOf="@+id/tv_friend_name"
             app:layout_constraintEnd_toStartOf="@+id/point_is_active"
             app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
@@ -80,8 +80,9 @@
             android:layout_height="15dp"
             app:cardBackgroundColor="@color/positive"
             app:cardCornerRadius="50dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/tv_last_active"
-            app:layout_constraintEnd_toEndOf="@+id/tv_phone"
+            app:layout_constraintEnd_toEndOf="@+id/tv_friend_name"
             app:layout_constraintTop_toTopOf="@+id/tv_last_active" />
 
         <TextView
@@ -89,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="TextView"
+            android:text=""
             app:layout_constraintBottom_toBottomOf="@+id/tv_last_active"
             app:layout_constraintStart_toEndOf="@+id/img_friend_container"
             app:layout_constraintTop_toTopOf="@+id/tv_last_active" />
