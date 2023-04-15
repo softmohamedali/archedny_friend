@@ -7,7 +7,6 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -21,13 +20,13 @@ class MainTrackRepoImp (
     override fun searchPhone(query: String, myPhone: String): Task<QuerySnapshot> =
         mainTrackFirebaseSource.searchPhone(query,myPhone)
 
-    override fun createChatChaneel(
-        freindId: String,
+    override fun createTrackingChanel(
+        friendId: String,
         onSuccess: () -> Unit,
         onError: (String) -> Unit
     ) {
         mainTrackFirebaseSource.createChannel(
-            friendId =freindId,
+            friendId =friendId,
             onSucess ={
                 onSuccess()
             },

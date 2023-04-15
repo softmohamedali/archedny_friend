@@ -6,6 +6,9 @@ import com.example.archedny_app_friend.core.domain.repo.RepoManner
 import com.example.archedny_app_friend.future_auth.data.remote.AuthFirebaseSource
 import com.example.archedny_app_friend.future_auth.data.repo.AuthRepoImp
 import com.example.archedny_app_friend.future_auth.domain.repo.AuthRepo
+import com.example.archedny_app_friend.future_chat.data.remote.ChatFirebaseSource
+import com.example.archedny_app_friend.future_chat.data.repo.ChatRepoImp
+import com.example.archedny_app_friend.future_chat.domain.repo.ChatRepo
 import com.example.archedny_app_friend.future_main_track.data.remote.MainTrackFirebaseSource
 import com.example.archedny_app_friend.future_main_track.data.repo.MainTrackRepoImp
 import com.example.archedny_app_friend.future_main_track.domain.repo.MainTrackRepo
@@ -34,4 +37,9 @@ object RepoModule {
     @ViewModelScoped
     fun provideMainTrackRepo(mainTrackFirebaseSource: MainTrackFirebaseSource): MainTrackRepo =
         MainTrackRepoImp(mainTrackFirebaseSource)
+
+    @Provides
+    @ViewModelScoped
+    fun provideChatRepo(chatFirebaseSource: ChatFirebaseSource): ChatRepo =
+        ChatRepoImp(chatFirebaseSource)
 }

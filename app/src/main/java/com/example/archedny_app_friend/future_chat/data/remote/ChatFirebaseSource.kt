@@ -21,13 +21,12 @@ class ChatFirebaseSource @Inject constructor(
     fun getUser() = auth.currentUser
 
     fun createChatChannel(
-        currentUserId: String = getUser()!!.uid,
         friendId: String,
         onSuccess: () -> Unit,
         onError: (error: String) -> Unit,
     ) {
         val chatChanelId = firestore.collection(Constants.USER_COLLECTION).document().id
-        firestore.collection(Constants.USER_COLLECTION).document(currentUserId)
+        firestore.collection(Constants.USER_COLLECTION).document( getUser()!!.uid)
             .collection(COLLECTION_CHAT_CHANNELS)
             .document(friendId)
             .set(mapOf(PROPERTY_CHAT_CHANNELS to chatChanelId))
@@ -35,7 +34,7 @@ class ChatFirebaseSource @Inject constructor(
                 if (it.isSuccessful){
                     firestore.collection(Constants.USER_COLLECTION).document(friendId)
                         .collection(COLLECTION_CHAT_CHANNELS)
-                        .document(currentUserId)
+                        .document( getUser()!!.uid)
                         .set(mapOf(PROPERTY_CHAT_CHANNELS to chatChanelId))
                         .addOnCompleteListener {
                             if (it.isSuccessful){

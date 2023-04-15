@@ -2,10 +2,10 @@ package com.example.archedny_app_friend.future_main_track.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.archedny_app_friend.core.domain.repo.RepoManner
 import com.example.archedny_app_friend.core.domain.models.User
 import com.example.archedny_app_friend.core.domain.utils.validation.DataManeger
 import com.example.archedny_app_friend.core.domain.utils.validation.ResultState
+import com.example.archedny_app_friend.future_chat.domain.usecases.CreateChatChannelUseCase
 import com.example.archedny_app_friend.future_main_track.domain.repo.MainTrackRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearshViewModel @Inject constructor(
-    private val repo: MainTrackRepo,
+    private val mainRepo: MainTrackRepo,
+    private val createChatChannelUseCase: CreateChatChannelUseCase,
 ):ViewModel() {
 
     private var _phones= MutableStateFlow<ResultState<List<User>>>(ResultState.Init)
@@ -24,8 +25,8 @@ class SearshViewModel @Inject constructor(
     fun searchPhone(phone:String){
         viewModelScope.launch(Dispatchers.IO) {
             _phones.emit(ResultState.IsLoading)
-            val userId:String=repo.getUsert()?.uid!!
-            repo.searchPhone(phone,repo.getCurrentUserPhone(userId)!!).addOnCompleteListener {
+            val userId:String=mainRepo.getUsert()?.uid!!
+            mainRepo.searchPhone(phone,mainRepo.getCurrentUserPhone(userId)!!).addOnCompleteListener {
                 if (it.isSuccessful){
                     _phones.value= DataManeger.handledata(it.result)
                 }else{
@@ -44,15 +45,31 @@ class SearshViewModel @Inject constructor(
     ){
         viewModelScope.launch (Dispatchers.IO){
             _isAddFriend.value= ResultState.IsLoading
-            repo.createChatChaneel(
-                freindId = freindId,
-                onSuccess = {
-                    _isAddFriend.value= ResultState.IsSucsses()
-                },
-                onError = {
-                    _isAddFriend.value= ResultState.IsError(it)
+            createChatChannelUseCase(
+                friendId = freindId,
+                onEmitResult = {
+                    when(it){
+                        is ResultState.IsLoading ->{
+                            _isAddFriend.value= ResultState.IsLoading
+                        }
+                        is ResultState.IsSucsses ->{
+                            mainRepo.createTrackingChanel(
+                                friendId = freindId,
+                                onSuccess = {
+                                    _isAddFriend.value= ResultState.IsSucsses()
+                                },
+                                onError = {
+                                    _isAddFriend.value= ResultState.IsError(it)
+                                }
+                            )
+                        }
+                        is ResultState.IsError ->{
+                            _isAddFriend.value= ResultState.IsError(it.message!!)
+                        }
+                    }
                 }
             )
+
         }
     }
 
