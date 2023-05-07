@@ -1,4 +1,4 @@
-package com.example.archedny_app_friend.future_chat.presentation.screens
+package com.example.archedny_app_friend.future_chat.presentation.screens.chat
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

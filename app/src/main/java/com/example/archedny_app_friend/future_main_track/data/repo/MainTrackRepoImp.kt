@@ -40,7 +40,7 @@ class MainTrackRepoImp (
     }
 
     override fun getMyFriends(userId: String): CollectionReference =
-        mainTrackFirebaseSource.getMyFriend(userId)
+        mainTrackFirebaseSource.getMyFriendTracking(userId)
 
     override suspend fun getCurrentUserPhone(userId: String): String? =
         mainTrackFirebaseSource.getCurrentUserPhone(userId)

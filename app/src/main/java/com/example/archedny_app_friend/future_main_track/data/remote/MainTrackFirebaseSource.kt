@@ -20,7 +20,7 @@ class MainTrackFirebaseSource @Inject constructor(
 ) {
     fun getUser() = auth.currentUser
 
-    fun getMyFriend(userId: String)= firestore.collection(Constants.USER_COLLECTION).document(userId)
+    fun getMyFriendTracking(userId: String)= firestore.collection(Constants.USER_COLLECTION).document(userId)
         .collection(COLLECTION_TRACK_CHANNELS)
 
     suspend fun getCurrentUserPhone(userId: String)=firestore.collection(Constants.USER_COLLECTION)

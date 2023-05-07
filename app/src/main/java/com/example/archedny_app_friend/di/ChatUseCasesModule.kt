@@ -5,6 +5,7 @@ import com.example.archedny_app_friend.core.data.repo.Repo
 import com.example.archedny_app_friend.core.domain.repo.RepoManner
 import com.example.archedny_app_friend.future_chat.domain.repo.ChatRepo
 import com.example.archedny_app_friend.future_chat.domain.usecases.CreateChatChannelUseCase
+import com.example.archedny_app_friend.future_chat.domain.usecases.GetFriendChatsUseCase
 import com.example.archedny_app_friend.future_chat.domain.usecases.SendTextMassageUseCase
 import dagger.Module
 import dagger.Provides
@@ -25,6 +26,11 @@ object ChatUseCasesModule {
     @ViewModelScoped
     fun provideSendTextMassageUseCase(chatRepo: ChatRepo): SendTextMassageUseCase =
         SendTextMassageUseCase(chatRepo)
+
+    @Provides
+    @ViewModelScoped
+    fun provideGetFriendsChatsMassageUseCase(chatRepo: ChatRepo): GetFriendChatsUseCase=
+        GetFriendChatsUseCase(chatRepo)
 
 }
 

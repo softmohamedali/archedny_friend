@@ -49,6 +49,8 @@
                 android:id="@+id/img_friend"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
+                android:src="@drawable/ic_person"
+                android:tint="@color/purple_200"
                 />
         </com.google.android.material.card.MaterialCardView>
 

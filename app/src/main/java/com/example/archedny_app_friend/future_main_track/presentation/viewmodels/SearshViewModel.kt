@@ -53,6 +53,7 @@ class SearshViewModel @Inject constructor(
                             _isAddFriend.value= ResultState.IsLoading
                         }
                         is ResultState.IsSucsses ->{
+
                             mainRepo.createTrackingChanel(
                                 friendId = freindId,
                                 onSuccess = {
@@ -69,7 +70,6 @@ class SearshViewModel @Inject constructor(
                     }
                 }
             )
-
         }
     }
 

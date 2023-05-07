@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
+import com.example.archedny_app_friend.core.domain.models.User
 import com.example.archedny_app_friend.core.domain.utils.validation.MyDiff
 import com.example.archedny_app_friend.databinding.LayoutFriendChatItemBinding
-import com.example.archedny_app_friend.future_chat.domain.models.Friend
 
 class FriendsChatAdapter () :RecyclerView.Adapter<FriendsChatAdapter.VH>(){
 
-    private var friends= mutableListOf<Friend>()
+    private var friends= mutableListOf<User>()
 
     class VH(var view:LayoutFriendChatItemBinding) :ViewHolder(view.root){
         companion object {
@@ -37,14 +37,16 @@ class FriendsChatAdapter () :RecyclerView.Adapter<FriendsChatAdapter.VH>(){
     override fun onBindViewHolder(holder: VH, position: Int) {
         val friend = friends[position]
         val item = holder.view
-        item.imgFriend.load(friend.imagePath)
-        item.tvFriendName.text = friend.name
-        item.tvLastActive.text = friend.lastActive
-        item.tvLastMassage.text = friend.lastMassage
+        if (friend.imagePath.isNotEmpty()){
+            item.imgFriend.load(friend.imagePath)
+        }
+        item.tvFriendName.text = friend.phone
+        item.tvLastActive.text = if(!friend.isActive) "last Active" else friend.lastActive
+        item.tvLastMassage.text ="last massage" //friend.lastMassage
         item.pointIsActive.visibility = if (friend.isActive) View.VISIBLE else View.GONE
         holder.itemView.setOnClickListener {
             onItemClickListener?.let {
-                it(friend.chatChannelId)
+                it(friend.id!!)
             }
         }
         item.imgFriendContainer.setOnClickListener {
@@ -61,7 +63,7 @@ class FriendsChatAdapter () :RecyclerView.Adapter<FriendsChatAdapter.VH>(){
     }
 
 
-    fun setData(newFriends: MutableList<Friend>) {
+    fun setData(newFriends: MutableList<User>) {
         val mydiff = MyDiff(friends, newFriends)
         val result = DiffUtil.calculateDiff(mydiff)
         friends = newFriends

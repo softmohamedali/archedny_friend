@@ -5,4 +5,7 @@ data class User(
     var phone:String?="",
     var name:String?="",
     var createAt:String?="",
+    val isActive:Boolean=false,
+    val imagePath:String="",
+    val lastActive:String="",
 )

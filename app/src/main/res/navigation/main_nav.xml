@@ -97,7 +97,7 @@
         tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/friendsChatsScreenFragment"
-        android:name="com.example.archedny_app_friend.future_chat.presentation.screens.FriendsChatsScreenFragment"
+        android:name="com.example.archedny_app_friend.future_chat.presentation.screens.friends_chats.FriendsChatsScreenFragment"
         android:label="fragment_friends_chats_screen"
         tools:layout="@layout/fragment_friends_chats_screen" >
         <action
@@ -109,7 +109,7 @@
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.example.archedny_app_friend.future_chat.presentation.screens.ChatFragment"
+        android:name="com.example.archedny_app_friend.future_chat.presentation.screens.chat.ChatFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" >
         <argument

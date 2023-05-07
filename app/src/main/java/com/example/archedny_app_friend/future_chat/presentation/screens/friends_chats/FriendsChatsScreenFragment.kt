@@ -1,20 +1,25 @@
-package com.example.archedny_app_friend.future_chat.presentation.screens
+package com.example.archedny_app_friend.future_chat.presentation.screens.friends_chats
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.archedny_app_friend.R
+import com.example.archedny_app_friend.core.domain.models.User
+import com.example.archedny_app_friend.core.domain.utils.validation.ResultState
 import com.example.archedny_app_friend.databinding.FragmentFriendsChatsScreenBinding
-import com.example.archedny_app_friend.future_chat.domain.models.Friend
 import com.example.archedny_app_friend.future_chat.presentation.adapters.FriendsChatAdapter
-import com.example.archedny_app_friend.future_chat.presentation.viewmodels.FriendChatsViewModel
+import com.example.archedny_app_friend.future_chat.presentation.screens.friends_chats.FriendChatsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class FriendsChatsScreenFragment : Fragment() {
@@ -61,18 +66,34 @@ class FriendsChatsScreenFragment : Fragment() {
     }
 
     private fun setUpObservers() {
-
+        lifecycleScope.launchWhenStarted {
+            chatsFriendsViewModel.myFriendChats.collect{
+                Log.d("moali fragchatfriend","${it}")
+                when{
+                    it is ResultState.IsLoading ->{
+                        Log.d("moali fragchatfriend","loadddding")
+                        binding.pbFriendsChats.visibility=View.VISIBLE
+                        binding.tvError.visibility=View.GONE
+                    }
+                    it is ResultState.IsSucsses ->{
+                        Log.d("moali fragchatfriend","successsssss ${it.data?.size}")
+                        binding.pbFriendsChats.visibility=View.VISIBLE
+                        binding.tvError.visibility=View.VISIBLE
+                        friendsItemAdapter.setData(it.data as MutableList)
+                    }
+                    it is ResultState.IsError ->{
+                        Log.d("moali fragchatfriend","errrrrroorrrrr")
+                        binding.pbFriendsChats.visibility=View.GONE
+                        binding.tvError.visibility=View.VISIBLE
+                        binding.tvError.text=it.message
+                        friendsItemAdapter.setData(mutableListOf())
+                    }
+                }
+            }
+        }
     }
 
     fun setUpRecyclerView(){
-        var data= mutableListOf<Friend>()
-        data.add(Friend())
-        data.add(Friend())
-        data.add(Friend())
-        data.add(Friend())
-        data.add(Friend())
-        data.add(Friend())
-        friendsItemAdapter.setData(data)
         binding.recyFriendsChats.apply {
             layoutManager=LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
             adapter=friendsItemAdapter
