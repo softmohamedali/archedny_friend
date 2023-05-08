@@ -45,7 +45,8 @@ class MainTrackFirebaseSource @Inject constructor(
         onError1: (error1: String) -> Unit,
         onError2: (error2: String) -> Unit,
     ) {
-        val id = firestore.collection(Constants.USER_COLLECTION).document().id
+        val chatChannelId = firestore.collection(Constants.CHAT_CHANNELS_COLLECTION).document()
+        val id=chatChannelId.id
         val result1 = firestore.collection(Constants.USER_COLLECTION).document(userId)
             .collection(COLLECTION_TRACK_CHANNELS)
             .document(friendId)

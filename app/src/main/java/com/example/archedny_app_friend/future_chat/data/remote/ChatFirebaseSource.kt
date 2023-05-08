@@ -109,14 +109,14 @@ class ChatFirebaseSource @Inject constructor(
                             id = it.id,
                             onSuccess = {friend->
                                 myFriends.add(friend)
+                                onSuccess(myFriends)
                             },
                             onError={error->
                                 onError(error)
                             }
                         )
                     }
-                    Log.d("moali ChatFirebaseSource" ,"size before${myFriends.size}")
-                    onSuccess(myFriends)
+                    //TODO try to do that in better way onSuccess(myFriends)
                     Log.d("moali ChatFirebaseSource" ,"size after ${myFriends.size}")
                 }else{
                     onError(error.message!!)

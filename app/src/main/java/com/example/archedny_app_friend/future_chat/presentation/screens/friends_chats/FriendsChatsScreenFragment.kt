@@ -68,21 +68,17 @@ class FriendsChatsScreenFragment : Fragment() {
     private fun setUpObservers() {
         lifecycleScope.launchWhenStarted {
             chatsFriendsViewModel.myFriendChats.collect{
-                Log.d("moali fragchatfriend","${it}")
                 when{
                     it is ResultState.IsLoading ->{
-                        Log.d("moali fragchatfriend","loadddding")
                         binding.pbFriendsChats.visibility=View.VISIBLE
                         binding.tvError.visibility=View.GONE
                     }
                     it is ResultState.IsSucsses ->{
-                        Log.d("moali fragchatfriend","successsssss ${it.data?.size}")
-                        binding.pbFriendsChats.visibility=View.VISIBLE
-                        binding.tvError.visibility=View.VISIBLE
+                        binding.pbFriendsChats.visibility=View.GONE
+                        binding.tvError.visibility=View.GONE
                         friendsItemAdapter.setData(it.data as MutableList)
                     }
                     it is ResultState.IsError ->{
-                        Log.d("moali fragchatfriend","errrrrroorrrrr")
                         binding.pbFriendsChats.visibility=View.GONE
                         binding.tvError.visibility=View.VISIBLE
                         binding.tvError.text=it.message

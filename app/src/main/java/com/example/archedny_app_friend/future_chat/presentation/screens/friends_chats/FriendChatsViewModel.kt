@@ -35,10 +35,7 @@ class FriendChatsViewModel @Inject constructor(
         viewModelScope.launch (ioDispatchers){
             getFriendChatsUseCase(
                 onEmitResult = {result->
-                    Log.d("moali FriendChatsvm","${result}")
-
                     _myFriendChats.value=result
-                    Log.d("moali FriendChatsvm","${_myFriendChats.value}")
                 }
             )
         }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.archedny_app_friend">
+    xmlns:tools="http://schemas.android.com/tools">
 
 <!--    permission needed for authentication with phon-->
     <uses-permission android:name="android.permission.INTERNET" />
