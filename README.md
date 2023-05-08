@@ -44,6 +44,5 @@
 
 [![Alt text for your video](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)]([https://raw.githubusercontent.com/USERNAME/REPOSITORY/BRANCH/PATH/TO/VIDEO.mp4](https://github.com/softmohamedali/archedny_friend/blob/master/track_video.mp4))
 
-[![Now in Android: 55]          // Title
-(https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg)] // Thumbnail
-([https://www.youtube.com/watch?v=Hc79sDi3f0U](https://github.com/softmohamedali/archedny_friend/blob/master/track_video.mp4) "Now in Android: 55")    // Video Link
+[<img src="https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg" width="50%">](https://www.youtube.com/watch?v=Hc79sDi3f0U "Now in Android: 55")
+[<img src="https://i.ytimg.com/vi/Hc79sDi3f0U/maxresdefault.jpg" width="50%">](https://www.youtube.com/watch?v=Hc79sDi3f0U "Now in Android: 55")
