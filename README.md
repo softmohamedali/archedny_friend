@@ -42,12 +42,7 @@
 
 ##🌴
 
-[![Alt text for your video](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)]([https://raw.githubusercontent.com/USERNAME/REPOSITORY/BRANCH/PATH/TO/VIDEO.mp4](https://github.com/softmohamedali/archedny_friend/blob/master/track_video.mp4))
-
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/GtlcOowVptU/0.jpg)](https://www.youtube.com/watch?v=GtlcOowVptU "Unity Snake Game")
-
-
-<video width="320" height="240" controls>
-  <source src="https://github.com/softmohamedali/archedny_friend/blob/master/track_video.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
+## Demo
+<p>
+  <img src="img/demo.gif" height="500" width="250">
+</p>
