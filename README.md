@@ -44,5 +44,5 @@
 
 ## Demo
 <p>
-  <img src="img/demo.gif" height="500" width="250">
+  <img src="track_video.gif" height="500" width="250">
 </p>
