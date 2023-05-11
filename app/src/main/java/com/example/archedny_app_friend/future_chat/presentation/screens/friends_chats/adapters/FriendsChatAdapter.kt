@@ -1,4 +1,4 @@
-package com.example.archedny_app_friend.future_chat.presentation.adapters
+package com.example.archedny_app_friend.future_chat.presentation.screens.friends_chats.adapters
 
 import android.view.LayoutInflater
 import android.view.View

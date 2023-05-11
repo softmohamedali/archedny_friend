@@ -1,25 +1,20 @@
 package com.example.archedny_app_friend.future_chat.presentation.screens.friends_chats
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.archedny_app_friend.R
-import com.example.archedny_app_friend.core.domain.models.User
 import com.example.archedny_app_friend.core.domain.utils.validation.ResultState
 import com.example.archedny_app_friend.databinding.FragmentFriendsChatsScreenBinding
-import com.example.archedny_app_friend.future_chat.presentation.adapters.FriendsChatAdapter
-import com.example.archedny_app_friend.future_chat.presentation.screens.friends_chats.FriendChatsViewModel
+import com.example.archedny_app_friend.future_chat.presentation.screens.friends_chats.adapters.FriendsChatAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class FriendsChatsScreenFragment : Fragment() {
