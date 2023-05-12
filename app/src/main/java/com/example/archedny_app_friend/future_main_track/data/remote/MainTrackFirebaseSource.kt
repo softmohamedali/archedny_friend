@@ -1,9 +1,7 @@
 package com.example.archedny_app_friend.future_main_track.data.remote
 
-import android.util.Log
 import com.example.archedny_app_friend.core.domain.models.User
 import com.example.archedny_app_friend.core.domain.utils.validation.Constants
-import com.example.archedny_app_friend.future_main_track.domain.models.ChatChannel
 import com.example.archedny_app_friend.future_main_track.domain.models.TrackChannel
 import com.example.archedny_app_friend.future_main_track.domain.utils.MainTrackConstants.COLLECTION_TRACK_CHANNELS
 import com.example.archedny_app_friend.future_main_track.domain.utils.MainTrackConstants.PROPERTY_TRACK_CHANNELS
@@ -47,7 +45,7 @@ class MainTrackFirebaseSource @Inject constructor(
         onError1: (error1: String) -> Unit,
         onError2: (error2: String) -> Unit,
     ) {
-        val newChatChannelId = firestore.collection(Constants.CHAT_CHANNELS_COLLECTION).document().id
+        val newChatChannelId = firestore.collection(Constants.TRACK_CHANNELS_COLLECTION).document().id
         val result1 = firestore.collection(Constants.USER_COLLECTION).document(userId)
             .collection(COLLECTION_TRACK_CHANNELS)
             .document(friendId)
@@ -77,7 +75,7 @@ class MainTrackFirebaseSource @Inject constructor(
 
 
     suspend fun shareLocationWithMyFriend(friendId: String, latlang: LatLng) =
-        firestore.collection(Constants.CHAT_CHANNELS_COLLECTION)
+        firestore.collection(Constants.TRACK_CHANNELS_COLLECTION)
             .document(getFriendChatChannel(friendId)!!.trackChannelsId)
             .collection(getUser()!!.uid)
             .document(Constants.SENDER_LOCATION_DOCUMENT)
@@ -85,7 +83,7 @@ class MainTrackFirebaseSource @Inject constructor(
 
 
     suspend fun getFriendLocation(friendId: String) =
-        firestore.collection(Constants.CHAT_CHANNELS_COLLECTION)
+        firestore.collection(Constants.TRACK_CHANNELS_COLLECTION)
             .document(getFriendChatChannel(friendId)!!.trackChannelsId)
             .collection(friendId)
             .document(Constants.SENDER_LOCATION_DOCUMENT)

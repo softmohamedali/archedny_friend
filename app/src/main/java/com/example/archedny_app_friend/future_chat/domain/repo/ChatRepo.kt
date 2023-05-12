@@ -11,7 +11,6 @@ interface ChatRepo {
     )
 
     fun sendTextMassage(
-        chatChanelId:String,
         massage: TextMassage,
         onSuccess: () -> Unit,
         onError: (error: String) -> Unit

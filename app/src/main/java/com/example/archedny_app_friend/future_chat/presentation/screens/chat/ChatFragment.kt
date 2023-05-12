@@ -9,17 +9,18 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.archedny_app_friend.databinding.FragmentChatBinding
-import com.example.archedny_app_friend.future_auth.presentation.screens.VerificationPhoneFragmentArgs
 import com.example.archedny_app_friend.future_chat.domain.models.TextMassage
 import com.example.archedny_app_friend.future_chat.presentation.screens.chat.adapters.MessagesAdapters
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Date
 
+@AndroidEntryPoint
 class ChatFragment : Fragment() {
 
     private var _binding: FragmentChatBinding?=null
     private val binding get() = _binding!!
     private val messagesAdapter by lazy { MessagesAdapters() }
-    private val searchViewModel by viewModels<ChatViewModel>()
+    private val chatViewModel by viewModels<ChatViewModel>()
     private lateinit var chatChannelId:String
     private val navArgs by navArgs<ChatFragmentArgs>()
     override fun onCreateView(
@@ -59,11 +60,10 @@ class ChatFragment : Fragment() {
         val message = TextMassage(
             msg=messageText,
             date=Date().time.toString(),
-            senderId="",
             receiverId="",
             chatChanneId = chatChannelId
         )
-        searchViewModel.sendMessage(textMessage = message)
+        chatViewModel.sendMessage(textMessage = message)
     }
 
     private fun setupChatRecyclerView() {

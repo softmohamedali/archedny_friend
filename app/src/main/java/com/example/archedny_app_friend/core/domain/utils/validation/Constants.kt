@@ -6,7 +6,7 @@ object Constants {
     const val EXTEND_MAP_KEY="extend_map_key"
     const val LANG_KEY="lang_key"
     const val USER_COLLECTION: String ="users"
-    const val CHAT_CHANNELS_COLLECTION: String ="chatchannels"
+    const val TRACK_CHANNELS_COLLECTION: String ="trackChannels"
     const val SENDER_LOCATION_DOCUMENT: String ="sender"
     const val RECIVER_LOCATION_DOCUMENT: String ="reciver"
     const val DATASTORE_ARCHEDNY_NAME: String ="archedny_datastore"

@@ -9,13 +9,11 @@ class SendTextMassageUseCase(
 ) {
 
     suspend operator fun invoke(
-        currentUserId: String,
         TextMassage: TextMassage,
         onEmitResult:(ResultState<String>)->Unit
     ){
         onEmitResult(ResultState.IsLoading)
         chatRepo.sendTextMassage(
-            currentUserId,
             TextMassage,
             onError = {
                 onEmitResult(ResultState.IsError(it))

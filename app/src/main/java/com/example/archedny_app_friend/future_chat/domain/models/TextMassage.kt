@@ -7,7 +7,7 @@ data class TextMassage(
     var isRead:Boolean=false,
     var itReceived:Boolean=false,
     var id:String?=null,
-    var senderId:String,
+    var senderId:String?=null,
     var receiverId:String,
     var chatChanneId:String
 )

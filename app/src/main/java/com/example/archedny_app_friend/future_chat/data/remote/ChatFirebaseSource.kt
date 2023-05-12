@@ -1,9 +1,7 @@
 package com.example.archedny_app_friend.future_chat.data.remote
 
 import android.util.Log
-import androidx.test.core.app.ActivityScenario.launch
 import com.example.archedny_app_friend.core.domain.models.User
-import com.example.archedny_app_friend.core.domain.utils.myextension.out
 import com.example.archedny_app_friend.core.domain.utils.validation.Constants
 import com.example.archedny_app_friend.future_chat.domain.models.TextMassage
 import com.example.archedny_app_friend.future_chat.domain.utils.ChatConstants
@@ -12,10 +10,7 @@ import com.example.archedny_app_friend.future_chat.domain.utils.ChatConstants.CO
 import com.example.archedny_app_friend.future_chat.domain.utils.ChatConstants.PROPERTY_CHAT_CHANNELS
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -75,19 +70,20 @@ class ChatFirebaseSource @Inject constructor(
     }
 
     fun sendTextMassage(
-        chatChanelId:String,
         massage:TextMassage,
         onSuccess: () -> Unit,
         onError: (error: String) -> Unit
-    ){
-        val massageDocument=firestore.collection(COLLECTION_CHAT_CHANNELS).document(chatChanelId)
-            .collection(COLLECTION_MASSAGES_IN_CHAT_CHANNELS)
-            .document()
-        massage.id=massageDocument.id
+    ) {
+        massage.senderId = getUser()?.uid
+        val massageDocument =
+            firestore.collection(COLLECTION_CHAT_CHANNELS).document(massage.chatChanneId)
+                .collection(COLLECTION_MASSAGES_IN_CHAT_CHANNELS)
+                .document()
+        massage.id = massageDocument.id
         massageDocument.set(massage).addOnCompleteListener {
-            if (it.isSuccessful){
+            if (it.isSuccessful) {
                 onSuccess()
-            }else{
+            } else {
                 onError("Error : ${it.exception?.message}")
             }
         }

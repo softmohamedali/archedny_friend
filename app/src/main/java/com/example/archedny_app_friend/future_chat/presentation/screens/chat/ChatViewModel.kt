@@ -40,7 +40,6 @@ class ChatViewModel @Inject constructor(
     fun sendMessage(textMessage:TextMassage){
         viewModelScope.launch {
             sendTextMassageUseCase(
-                currentUserId= textMessage.senderId,
                 TextMassage=textMessage,
                 onEmitResult={
                    _isSendTheMessage.value=it

@@ -19,13 +19,12 @@ class ChatRepoImp(
     }
 
     override fun sendTextMassage(
-        chatChanelId: String,
         massage: TextMassage,
         onSuccess: () -> Unit,
         onError: (error: String) -> Unit
     ) {
         chatFirebaseSource.sendTextMassage(
-            chatChanelId, massage, onSuccess, onError
+            massage, onSuccess, onError
         )
     }
 
