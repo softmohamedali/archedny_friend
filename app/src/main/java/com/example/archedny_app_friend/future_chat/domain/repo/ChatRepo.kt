@@ -20,4 +20,10 @@ interface ChatRepo {
         onSuccess: (friends:MutableList<User>) -> Unit,
         onError: (error: String) -> Unit
     )
+
+    fun getMessagesChatChannelContent(
+        chatChannelId:String,
+        onSuccess: (messages:MutableList<TextMassage>) -> Unit,
+        onError: (error: String) -> Unit,
+    )
 }

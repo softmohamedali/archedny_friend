@@ -121,37 +121,29 @@ class ChatFirebaseSource @Inject constructor(
     }
 
 
-//    private suspend fun handleGetFriends(
-//        value: QuerySnapshot,
-//        onSuccess: () -> Unit
-//    ){
-//        out("start")
-//        out("1")
-//        val users= mutableListOf<User>()
-//
-//            out("2")
-//
-//
-//                value.documents.forEach {
-//                    out("3")
-//                    getUser(it.id).addOnCompleteListener {task->
-//                        if (task.isSuccessful){
-//                            onSuccess(task.to)
-//                        }
-//                    }
-//                    users.add(getUser(it.id).toObject(User::class.java)!!)
-//                    out("4")
-//                }
-//            invokeOnCompletion {
-//                out("5")
-//                if (users.isNotEmpty()){
-//                    _users.value= ResultState.IsSucsses(users)
-//                }else{
-//                    _users.value= ResultState.IsError("No Data Found")
-//                }
-//            }
-//
-//    }
+    fun getMessagesChatChannelContent(
+        chatChannelId:String,
+        onSuccess: (messages:MutableList<TextMassage>) -> Unit,
+        onError: (error: String) -> Unit,
+    ){
+        val myMessages= mutableListOf<TextMassage>()
+        firestore.collection(COLLECTION_CHAT_CHANNELS).document(chatChannelId)
+            .collection(COLLECTION_MASSAGES_IN_CHAT_CHANNELS)
+            .addSnapshotListener { value, error ->
+                if (error==null&&value!=null){
+                    value.documents.forEach {doc->
+                        myMessages.add(doc.toObject(TextMassage::class.java)!!)
+                    }
+                    onSuccess(myMessages)
+                }else{
+                    onError(error?.message!!)
+                }
+            }
+
+    }
+
+
+
 
 
 }

@@ -31,4 +31,12 @@ class ChatRepoImp(
     override fun getMyFriendChats(onSuccess: (friends:MutableList<User>) -> Unit, onError: (error: String) -> Unit) {
         chatFirebaseSource.getMyFriendChats(onSuccess = onSuccess,onError=onError)
     }
+
+    override fun getMessagesChatChannelContent(
+        chatChannelId: String,
+        onSuccess: (messages: MutableList<TextMassage>) -> Unit,
+        onError: (error: String) -> Unit
+    ) {
+
+    }
 }
