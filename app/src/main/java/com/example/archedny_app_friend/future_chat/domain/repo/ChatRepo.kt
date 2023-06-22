@@ -16,6 +16,12 @@ interface ChatRepo {
         onError: (error: String) -> Unit
     )
 
+    fun getChatChannelId(
+        friendId: String,
+        onSuccess: (chatChannelId:String) -> Unit,
+        onError: (error: String) -> Unit
+    )
+
     fun getMyFriendChats(
         onSuccess: (friends:MutableList<User>) -> Unit,
         onError: (error: String) -> Unit

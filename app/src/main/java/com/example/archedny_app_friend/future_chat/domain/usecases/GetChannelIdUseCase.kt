@@ -1,21 +1,20 @@
 package com.example.archedny_app_friend.future_chat.domain.usecases
 
-import com.example.archedny_app_friend.core.domain.models.User
 import com.example.archedny_app_friend.core.domain.utils.validation.ResultState
 import com.example.archedny_app_friend.future_chat.domain.models.TextMassage
 import com.example.archedny_app_friend.future_chat.domain.repo.ChatRepo
 
-class GetChatContentUseCase (
+class GetChannelIdUseCase(
     private val chatRepo: ChatRepo
 ) {
 
-    suspend operator fun invoke(
-        chatChannelId:String,
-        onEmitResult:(ResultState<List<TextMassage>>)->Unit
+    operator fun invoke(
+        friendId:String,
+        onEmitResult:(ResultState<String>)->Unit
     ){
         onEmitResult(ResultState.IsLoading)
-        chatRepo.getMessagesChatChannelContent(
-            chatChannelId = chatChannelId,
+        chatRepo.getChatChannelId(
+            friendId = friendId,
             onError = {
                 onEmitResult(ResultState.IsError(it))
             },

@@ -28,6 +28,16 @@ class ChatRepoImp(
         )
     }
 
+    override fun getChatChannelId(
+        friendId: String,
+        onSuccess: (chatChannelId: String) -> Unit,
+        onError: (error: String) -> Unit
+    ) {
+        chatFirebaseSource.getChatChannel(
+            friendId, onSuccess, onError
+        )
+    }
+
     override fun getMyFriendChats(onSuccess: (friends:MutableList<User>) -> Unit, onError: (error: String) -> Unit) {
         chatFirebaseSource.getMyFriendChats(onSuccess = onSuccess,onError=onError)
     }
@@ -37,6 +47,10 @@ class ChatRepoImp(
         onSuccess: (messages: MutableList<TextMassage>) -> Unit,
         onError: (error: String) -> Unit
     ) {
-
+        chatFirebaseSource.getMessagesChatChannelContent(
+            chatChannelId=chatChannelId,
+            onSuccess=onSuccess,
+            onError=onError
+        )
     }
 }
