@@ -41,7 +41,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    z<androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recy_messages"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -103,10 +103,20 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_send"
-            app:tint="@color/purple_500"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/purple_500" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.asynctaskcoffee.audiorecorder.uikit.RecordButton
+        android:id="@+id/recordButton"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_chat_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/bottom_chat_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

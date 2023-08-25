@@ -1,6 +1,7 @@
 package com.example.archedny_app_friend.future_chat.domain.usecases
 
 import com.example.archedny_app_friend.core.domain.models.User
+import com.example.archedny_app_friend.core.domain.utils.myextension.mylog
 import com.example.archedny_app_friend.core.domain.utils.validation.ResultState
 import com.example.archedny_app_friend.future_chat.domain.models.TextMassage
 import com.example.archedny_app_friend.future_chat.domain.repo.ChatRepo
@@ -20,6 +21,7 @@ class GetChatContentUseCase (
                 onEmitResult(ResultState.IsError(it))
             },
             onSuccess = {
+                mylog("my massages size${it.size}",this)
                 onEmitResult(ResultState.IsSucsses(it))
             }
         )

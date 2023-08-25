@@ -30,7 +30,7 @@ import com.example.archedny_app_friend.core.domain.utils.validation.PermissionUt
 import com.example.archedny_app_friend.core.domain.utils.validation.ResultState
 import com.example.archedny_app_friend.core.domain.utils.myextension.ToastType
 import com.example.archedny_app_friend.core.domain.utils.myextension.coustomToast
-import com.example.archedny_app_friend.core.domain.utils.myextension.out
+import com.example.archedny_app_friend.core.domain.utils.myextension.mylog
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnCameraMoveStartedListener
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -332,7 +332,7 @@ class HomeMapFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private fun observeMapToolIsOutoExtended(){
         lifecycleScope.launchWhenStarted {
             sharedViewModel.isExtendMap.collect{
-                out("is extanded"+it.toString())
+                mylog("is extanded"+it.toString())
                 if(it){
                     mGoogleMap.uiSettings.isZoomControlsEnabled = true
                     mGoogleMap.setOnCameraMoveStartedListener { reason ->

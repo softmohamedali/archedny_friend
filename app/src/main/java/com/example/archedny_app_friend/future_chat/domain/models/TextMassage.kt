@@ -9,5 +9,5 @@ data class TextMassage(
     var id:String?=null,
     var senderId:String?=null,
     var receiverId:String="",
-    var chatChanneId:String=""
+    var chatChanneId:String="",
 )

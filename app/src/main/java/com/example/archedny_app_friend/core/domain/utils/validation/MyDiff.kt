@@ -2,7 +2,7 @@ package com.example.archedny_app_friend.core.domain.utils.validation
 
 import androidx.recyclerview.widget.DiffUtil
 
-open class MyDiff<T>(var old:MutableList<T>, var new:MutableList<T>):DiffUtil.Callback() {
+open class MyDiff<T>(var old:List<T>, var new:List<T>):DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return old.size
     }

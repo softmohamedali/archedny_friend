@@ -2,6 +2,7 @@ package com.example.archedny_app_friend.future_chat.data.remote
 
 import android.util.Log
 import com.example.archedny_app_friend.core.domain.models.User
+import com.example.archedny_app_friend.core.domain.utils.myextension.mylog
 import com.example.archedny_app_friend.core.domain.utils.validation.Constants
 import com.example.archedny_app_friend.future_chat.domain.models.TextMassage
 import com.example.archedny_app_friend.future_chat.domain.utils.ChatConstants
@@ -164,12 +165,15 @@ class ChatFirebaseSource @Inject constructor(
             .collection(COLLECTION_MASSAGES_IN_CHAT_CHANNELS)
             .orderBy("date",Query.Direction.DESCENDING)
             .addSnapshotListener { value, error ->
+                mylog("${value}getMessagesChatChannelContent_fun in snapshot",this)
                 myMessages.clear()
                 if (error==null&&value!=null){
                     value.documents.forEach {doc->
                         myMessages.add(doc.toObject(TextMassage::class.java)!!)
                     }
+                    mylog("my massages size${myMessages.size}getMessagesChatChannelContent_fun in snapshot",this)
                     onSuccess(myMessages)
+                    mylog(myMessages.toString(),this)
                 }else{
                     onError(error?.message!!)
                 }

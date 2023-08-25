@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.archedny_app_friend.databinding.FragmentRegisterBinding
 import com.example.archedny_app_friend.future_auth.presentation.viewmodels.AuthViewModel
 import com.example.archedny_app_friend.core.domain.utils.validation.ResultState
-import com.example.archedny_app_friend.core.domain.utils.myextension.out
+import com.example.archedny_app_friend.core.domain.utils.myextension.mylog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,7 +47,7 @@ class RegisterFragment : Fragment() {
         binding.registerButtonRegister.setOnClickListener {
             mPhone=binding.phoneEditTextRegister.text.toString()
             mCode=binding.countrycodeSpinnerRegister.selectedCountryCode
-            out("phone${mPhone} code${mCode}")
+            mylog("phone${mPhone} code${mCode}")
             authViewModel.registerVerifiyWithPhone(
                 phone ="+${mCode}${mPhone}",
                 activity = requireActivity()
@@ -66,7 +66,7 @@ class RegisterFragment : Fragment() {
                     is ResultState.IsError ->{
                         binding.progressRegister.isVisible=false
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                        out(it.message.toString())
+                        mylog(it.message.toString())
                     }
                     is ResultState.IsSucsses ->{
                         binding.progressRegister.isVisible=false

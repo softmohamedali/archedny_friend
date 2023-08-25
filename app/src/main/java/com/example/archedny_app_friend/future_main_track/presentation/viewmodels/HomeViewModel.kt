@@ -4,12 +4,11 @@ package com.example.archedny_app_friend.future_main_track.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.archedny_app_friend.core.data.repo.Repo
 import com.example.archedny_app_friend.future_main_track.domain.models.MyLatLang
 import com.example.archedny_app_friend.core.domain.models.User
 import com.example.archedny_app_friend.core.domain.repo.RepoManner
 import com.example.archedny_app_friend.core.domain.utils.validation.ResultState
-import com.example.archedny_app_friend.core.domain.utils.myextension.out
+import com.example.archedny_app_friend.core.domain.utils.myextension.mylog
 import com.example.archedny_app_friend.future_main_track.domain.repo.MainTrackRepo
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.firestore.QuerySnapshot
@@ -47,20 +46,24 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun handleGetFriends(value:QuerySnapshot){
-        out("start")
-        out("1")
+        //TODO delete logs
+        mylog("start")
+        mylog("1")
         val users= mutableListOf<User>()
         viewModelScope.launch(Dispatchers.IO) {
-            out("2")
+            mylog("2")
             async {
 
                 value.documents.forEach {
-                    out("3")
-                    users.add(getUser(it.id).toObject(User::class.java)!!)
-                    out("4")
+                    mylog("3")
+                    val user=getUser(it.id).toObject(User::class.java)
+                    if (user!=null){
+                        users.add(user)
+                    }
+                    mylog("4")
                 }
             }.invokeOnCompletion {
-                out("5")
+                mylog("5")
                 if (users.isNotEmpty()){
                     _users.value= ResultState.IsSucsses(users)
                 }else{

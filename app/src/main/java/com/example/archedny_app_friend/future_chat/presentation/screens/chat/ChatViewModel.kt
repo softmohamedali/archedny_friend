@@ -2,7 +2,7 @@ package com.example.archedny_app_friend.future_chat.presentation.screens.chat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.archedny_app_friend.core.domain.models.User
+import com.example.archedny_app_friend.core.domain.utils.myextension.mylog
 import com.example.archedny_app_friend.core.domain.utils.validation.ResultState
 import com.example.archedny_app_friend.future_chat.domain.models.TextMassage
 import com.example.archedny_app_friend.future_chat.domain.usecases.GetChannelIdUseCase
@@ -44,6 +44,7 @@ class ChatViewModel @Inject constructor(
             getChatContentUseCase(
                 chatChannelId = chatChannelId,
                 onEmitResult={
+                    mylog("get_chat_content_res=${it.data?.size}",this@ChatViewModel)
                     _chatContent.value=it
                 }
             )
